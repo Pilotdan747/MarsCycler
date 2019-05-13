@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="C__">
-				<Option output="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/C__" prefix_auto="0" extension_auto="0"/>
+			<Target title="MarsCycler">
+				<Option output="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/MarsCycler" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -53,14 +53,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 C__"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 MarsCycler"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="C__/fast">
-				<Option output="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/C__" prefix_auto="0" extension_auto="0"/>
+			<Target title="MarsCycler/fast">
+				<Option output="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/MarsCycler" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -75,7 +75,7 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 C__/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 MarsCycler/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Daniel/Documents/CODE/Research/Aldrin\ Institute/MarsCycler/C++/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -83,7 +83,7 @@
 			</Target>
 		</Build>
 		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/main.cpp">
-			<Option target="C__"/>
+			<Option target="MarsCycler"/>
 		</Unit>
 		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
