@@ -27,7 +27,7 @@ phi = deg2rad(30);
 dT1 = 120*24*3600;
 dT2 = 23*30*24*3600;
 dT3 = 120*24*3600;
-dT4 = SynodicT*2 - (dT1 + dT2 + dT3); %12*30*24*3600;
+dT4 = SynodicT - (dT1 + dT2 + dT3); %12*30*24*3600;
 
 %% Earth to Mars CR2BP
 Re = re*[1; 0; 0];
