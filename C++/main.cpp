@@ -20,55 +20,115 @@ void lambert(vector R1, vector R2, double dT, double mu, int k, vector V[2]);
 
 int main() {
 
-    double re = 1.495979e8;
-    double rm = 2.279483e8;
+    double re, rm, muSun, Ve, Vm, Te, Tm, SynodicT, phi, dT1, dT2, dT3, dT4, dThetaM, thetaM, dThetaE, thetaE, dT, dV;
+    vector Re1, Rm1, Rm2, Rm3, Re4, Re5, vEarth, vMars;
 
-    double muSun = 1.32712440e11;
+    re = 1.495979e8;
+    rm = 2.279483e8;
 
-    double Ve = sqrt(muSun/re);
-    double Vm = sqrt(muSun/rm);
+    muSun = 1.32712440e11;
 
-    double Te = 2*pi/sqrt(muSun)*pow(re, 3.0 / 2.0);
-    double Tm = 2*pi/sqrt(muSun)*pow(rm,3.0/2.0);
+    Ve = sqrt(muSun/re);
+    Vm = sqrt(muSun/rm);
 
-    double SynodicT = 1/(abs(1/Te - 1/Tm));
+    Te = 2*pi/sqrt(muSun)*pow(re, 3.0 / 2.0);
+    Tm = 2*pi/sqrt(muSun)*pow(rm,3.0/2.0);
+
+    SynodicT = 1/(fabs(1/Te - 1/Tm));
 
     //Set Up & Initial Conditions
-    double phi = 30*pi/180;
+    phi = 30*pi/180;
 
-    double dT1 = 120*24*3600;
-    double dT2 = 23*30*24*3600;
-    double dT3 = 120*24*3600;
-    double dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
+    dT1 = 120*24*3600;
+    dT2 = 24*30*24*3600;
+    dT3 = 120*24*3600;
+    dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
+
+    thetaE = 0;
+    thetaM = phi;
 
     // Earth to Mars
-    vector Re1;
-    vector Rm1;
     Re1.x = re*1; Re1.y = re*0; Re1.z = re*0;
     Rm1.x = rm*cos(phi); Rm1.y = rm*sin(phi); Rm1.z = rm*0;
 
-    double dThetaM = 2*pi*(dT1/Tm);
-    double thetaM2 = phi + dThetaM;
+    dThetaM = 2*pi*(dT1/Tm);
+    thetaM += dThetaM;
 
-    double dThetaE = 2*pi*(dT1/Te);
-    double thetaE2 = 0 + dThetaE;
+    dThetaE = 2*pi*(dT1/Te);
+    thetaE += dThetaE;
 
-    vector Rm2;
-    Rm2.x = rm*cos(thetaM2); Rm2.y = rm*sin(thetaM2); Rm2.z = 0;
+    Rm2.x = rm*cos(thetaM); Rm2.y = rm*sin(thetaM); Rm2.z = 0;
 
     vector V12[2];
     lambert(Re1, Rm2, dT1, muSun, 1, V12);
 
-    vector vEarth1;
-    vEarth1.x = Ve*1; vEarth1.y = Ve*0; vEarth1.z = Ve*0;
+    vEarth.x = Ve*1; vEarth.y = Ve*0; vEarth.z = Ve*0;
+    vMars.x = Vm*cos(thetaM); vMars.y = Vm*sin(thetaM); vMars.z = Vm*0;
 
-    vector vMars2;
-    vMars2.x = Vm*cos(thetaM2); vMars2.y = Vm*sin(thetaM2); vMars2.z = Vm*0;
+    vector VinfE1 = vinf(V12[0], vEarth);
+    vector VinfM2 = vinf(V12[1], vMars);
 
-    vector VinfE1 = vinf(V12[0], vEarth1);
-    vector VinfM2 = vinf(V12[1], vMars2);
+    // Mars to Mars
+    dThetaM = 2*pi*(dT2/Tm);
+    thetaM += dThetaM;
 
-    printf("Test %f", VinfM2.x);
+    dThetaE = 2*pi*(dT2/Te);
+    thetaE += dThetaE;
+
+    Rm3.x = rm*cos(thetaM); Rm3.y = rm*sin(thetaM); Rm3.z = rm*0;
+
+    vector V34[2];
+    lambert(Rm2, Rm3, dT2, muSun, 1, V34);
+
+    vector VinfM3 = vinf(V34[0], vMars);
+
+    vMars.x = Vm*cos(thetaM); vMars.y = Vm*sin(thetaM); vMars.z = Vm*0;
+
+    vector VinfM4 = vinf(V34[1], vMars);
+
+    // Mars to Earth
+    dThetaM = 2*pi*(dT3/Tm);
+    thetaM += dThetaM;
+
+    dThetaE = 2*pi*(dT3/Te);
+    thetaE += dThetaE;
+
+    Re4.x = re*cos(thetaE); Re4.y = re*sin(thetaE); Re4.z = re*0;
+
+    vector V56[2];
+    lambert(Rm3, Re4, dT3, muSun, 1, V56);
+
+    vEarth.x = Ve*cos(thetaE); vEarth.y = Ve*sin(thetaE); vEarth.z = Ve*0;
+
+    vector VinfM5 = vinf(V56[0], vMars);
+    vector VinfE6 = vinf(V56[1], vEarth);
+
+    // Earth to Earth
+    dThetaM = 2*pi*(dT4/Tm);
+    thetaM += dThetaM;
+
+    dThetaE = 2*pi*(dT4/Te);
+    thetaE += dThetaE;
+
+    Re5.x = re*cos(thetaE); Re5.y = re*sin(thetaE); Re5.z = re*0;
+
+    vector V78[2];
+    lambert(Re4, Re5, dT4, muSun, 1, V78);
+
+    vector VinfE7 = vinf(V78[0], vEarth);
+
+    vEarth.x = re*cos(thetaE); vEarth.y = re*sin(thetaE); vEarth.z = re*0;
+
+    vector VinfE8 = vinf(V78[1], vEarth);
+
+    // Totals
+    dT = dT1 + dT2 + dT3 + dT4;
+    dV = fabs(norm(VinfM3) - norm(VinfM2)) + fabs(norm(VinfM5) - norm(VinfM4)) + fabs(norm(VinfE7) - norm(VinfE6))
+            + fabs(norm(VinfE8) - norm(VinfE1));
+
+    printf("Total Time in Years: %f\n", dT/3600/24/365);
+    printf("Total Delta V in Km/s: %f\n", dV);
+
     return 0;
 }
 
@@ -122,21 +182,28 @@ void lambert(vector R1, vector R2, double dT, double mu, int k, vector V[2]) {
     }
 
     double A = sin(dTheta)*sqrt(r1*r2/(1 - cos(dTheta)));
+    printf("A is %f\n", A);
 
 
-    double Znew, Zold = 0.1, dZ, C, S, y, F, FPri;
+    double Znew, Zold, dZ, C, S, y, F, FPri;
+    Zold = 0.1;
+    int count = 0;
     do {
-        C = 0.5 - Zold/24;
-        S = 1.0/6.0 - Zold/120;
+        C = 0.5 - Zold/24 + pow(Zold, 2)/720;
+        S = 1.0/6.0 - Zold/120 + pow(Zold, 2)/5040 - pow(Zold, 3)/362880;
         y = r1 + r2 + A*(Zold*S - 1)/sqrt(C);
 
         F = pow(y/C, 3.0/2.0)*S + A*sqrt(y) - sqrt(mu)*dT;
         FPri = pow(y/C, 3.0/2.0)*(1/(2*Zold)*(C - 3*S/(2*C)) + 3*pow(S, 2)/(4*C)) + A/8*(3*S/C*sqrt(y) + A*sqrt(C/y));
 
         Znew = Zold - F/FPri;
-        dZ = abs(Znew - Zold);
+        dZ = fabs(Znew - Zold);
         Zold = Znew;
-    } while (dZ > 0.00001);
+        count++;
+        if (count > 1000) {
+            printf("Count too high\n");
+        }
+    } while (dZ > 0.00001 && count < 1001);
 
     y = r1 + r2 + A*(Zold*S - 1)/sqrt(C);
 
