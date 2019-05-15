@@ -1,1 +1,1 @@
-/usr/local/opt/llvm/bin/clang++   -std=c++11 -fopenmp -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/MarsCycler.dir/main.cpp.o  -o MarsCycler 
+/usr/local/opt/llvm/bin/clang++   -std=c++11 -fopenmp -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/MarsCycler.dir/main.cpp.o CMakeFiles/MarsCycler.dir/helperFuncs.cpp.o  -o MarsCycler 

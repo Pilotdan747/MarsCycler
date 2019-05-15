@@ -123,6 +123,33 @@ MarsCycler/fast:
 	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/build
 .PHONY : MarsCycler/fast
 
+helperFuncs.o: helperFuncs.cpp.o
+
+.PHONY : helperFuncs.o
+
+# target to build an object file
+helperFuncs.cpp.o:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/helperFuncs.cpp.o
+.PHONY : helperFuncs.cpp.o
+
+helperFuncs.i: helperFuncs.cpp.i
+
+.PHONY : helperFuncs.i
+
+# target to preprocess a source file
+helperFuncs.cpp.i:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/helperFuncs.cpp.i
+.PHONY : helperFuncs.cpp.i
+
+helperFuncs.s: helperFuncs.cpp.s
+
+.PHONY : helperFuncs.s
+
+# target to generate assembly for a file
+helperFuncs.cpp.s:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/helperFuncs.cpp.s
+.PHONY : helperFuncs.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MarsCycler"
+	@echo "... helperFuncs.o"
+	@echo "... helperFuncs.i"
+	@echo "... helperFuncs.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
