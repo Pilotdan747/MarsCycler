@@ -25,10 +25,15 @@ int main() {
     //Set Up & Initial Conditions
     phi = 30*pi/180;
 
-    dT1 = 120*24*3600;
-    dT2 = 24*30*24*3600;
-    dT3 = 120*24*3600;
+    dT1 = 150*24*3600;
+    dT2 = 28*30*24*3600;
+    dT3 = 150*24*3600;
     dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
+
+    printf("dT1 is: %4.2f months\n", dT1/3600/24/30);
+    printf("dT2 is: %4.2f months\n", dT2/3600/24/30);
+    printf("dT3 is: %4.2f months\n", dT3/3600/24/30);
+    printf("dT4 is: %4.2f months\n", dT4/3600/24/30);
 
     thetaE = 0;
     thetaM = phi;
@@ -99,13 +104,16 @@ int main() {
     Re5.x = re*cos(thetaE); Re5.y = re*sin(thetaE); Re5.z = re*0;
 
     vector V78[2];
-    lambert(Re4, Re5, dT4, muSun, 1, V78);
+    lambert(Re4, Re5, dT4, muSun, 1, V78); // 0 for regrograde
 
     vector VinfE7 = vinf(V78[0], vEarth);
 
-    vEarth.x = re*cos(thetaE); vEarth.y = re*sin(thetaE); vEarth.z = re*0;
+    vEarth.x = Ve*cos(thetaE); vEarth.y = Ve*sin(thetaE); vEarth.z = Ve*0;
 
     vector VinfE8 = vinf(V78[1], vEarth);
+
+    double test = fabs(norm(VinfE8) - norm(VinfE1));
+    printf("Last dV is: %f\n", test);
 
     // Totals
     dT = dT1 + dT2 + dT3 + dT4;

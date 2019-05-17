@@ -51,12 +51,19 @@ void lambert(vector R1, vector R2, double dT, double mu, int k, vector V[2]) {
 
     double dTheta;
 
-    if (c.z > 0) {
-        dTheta = acos(dot(R1, R2)/ (r1*r2));
+    if (k > 0) {
+        if (c.z > 0) {
+            dTheta = acos(dot(R1, R2) / (r1 * r2));
+        } else {
+            dTheta = 2 * pi - acos(dot(R1, R2) / (r1 * r2));
+        }
     } else {
-        dTheta = 2*pi - acos(dot(R1, R2)/ (r1*r2));
+        if (c.z > 0) {
+            dTheta = 2 * pi - acos(dot(R1, R2) / (r1 * r2));
+        } else {
+            dTheta = acos(dot(R1, R2) / (r1 * r2));
+        }
     }
-
     double A = sin(dTheta)*sqrt(r1*r2/(1 - cos(dTheta)));
     printf("A is %f\n", A);
 
@@ -64,9 +71,10 @@ void lambert(vector R1, vector R2, double dT, double mu, int k, vector V[2]) {
     double Znew, Zold, dZ, C, S, y, F, FPri;
     Zold = 0.1;
     int count = 0;
+    bool biSect = 0;
     do {
         C = 0.5 - Zold/24 + pow(Zold, 2)/720;
-        S = 1.0/6.0 - Zold/120 + pow(Zold, 2)/5040 - pow(Zold, 3)/362880;
+        S = 1.0/6.0 - Zold/120 + pow(Zold, 2)/5040;
         y = r1 + r2 + A*(Zold*S - 1)/sqrt(C);
 
         F = pow(y/C, 3.0/2.0)*S + A*sqrt(y) - sqrt(mu)*dT;
@@ -77,15 +85,41 @@ void lambert(vector R1, vector R2, double dT, double mu, int k, vector V[2]) {
         Zold = Znew;
         count++;
         if (count > 1000) {
-            printf("Count too high\n");
+            biSect = 1;
         }
     } while (dZ > 0.00001 && count < 1001);
 
+    double Zl, Zu, Z;
+
+    if (biSect) {
+        Zl = -4*pi;
+        Zu = 4*pow(pi, 2);
+        Z = 0;
+
+        while (fabs(F) >= 0.001) {
+            C = 0.5 - Z/24 + pow(Z, 2)/720 - pow(Z, 3)/40320;
+            S = 1.0/6.0 - Z/120 + pow(Z, 2)/5040 - pow(Z, 3)/362880;
+            y = r1 + r2 + A*(Z*S - 1)/sqrt(C);
+
+            F = pow(y/C, 3.0/2.0)*S + A*sqrt(y) - sqrt(mu)*dT;
+
+            if (F > 0) {
+                Zu = Z;
+            } else {
+                Zl = Z;
+            }
+
+            Z = (Zl + Zu)/2;
+        }
+    }
+
     y = r1 + r2 + A*(Zold*S - 1)/sqrt(C);
 
-    double f = 1 - y/r1;
-    double g = A*sqrt(y/mu);
-    double gDot = 1 - y/r2;
+    double f, g, gDot;
+
+    f = 1 - y/r1;
+    g = A*sqrt(y/mu);
+    gDot = 1 - y/r2;
 
     vector v1;
     v1.x = 1/g*(R2.x - f*R1.x); v1.y = 1/g*(R2.y - f*R1.y); v1.z = 1/g*(R2.z - f*R1.z);
