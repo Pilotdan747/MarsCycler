@@ -4,6 +4,11 @@
 CMakeFiles/MarsCycler.dir/helperFuncs.cpp.o: ../helperFuncs.cpp
 CMakeFiles/MarsCycler.dir/helperFuncs.cpp.o: ../helperFuncs.h
 
+CMakeFiles/MarsCycler.dir/lambert.cpp.o: ../helperFuncs.h
+CMakeFiles/MarsCycler.dir/lambert.cpp.o: ../lambert.cpp
+CMakeFiles/MarsCycler.dir/lambert.cpp.o: ../lambert.h
+
 CMakeFiles/MarsCycler.dir/main.cpp.o: ../helperFuncs.h
+CMakeFiles/MarsCycler.dir/main.cpp.o: ../lambert.h
 CMakeFiles/MarsCycler.dir/main.cpp.o: ../main.cpp
 

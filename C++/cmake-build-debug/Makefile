@@ -150,6 +150,33 @@ helperFuncs.cpp.s:
 	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/helperFuncs.cpp.s
 .PHONY : helperFuncs.cpp.s
 
+lambert.o: lambert.cpp.o
+
+.PHONY : lambert.o
+
+# target to build an object file
+lambert.cpp.o:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/lambert.cpp.o
+.PHONY : lambert.cpp.o
+
+lambert.i: lambert.cpp.i
+
+.PHONY : lambert.i
+
+# target to preprocess a source file
+lambert.cpp.i:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/lambert.cpp.i
+.PHONY : lambert.cpp.i
+
+lambert.s: lambert.cpp.s
+
+.PHONY : lambert.s
+
+# target to generate assembly for a file
+lambert.cpp.s:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/lambert.cpp.s
+.PHONY : lambert.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -189,6 +216,9 @@ help:
 	@echo "... helperFuncs.o"
 	@echo "... helperFuncs.i"
 	@echo "... helperFuncs.s"
+	@echo "... lambert.o"
+	@echo "... lambert.i"
+	@echo "... lambert.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
