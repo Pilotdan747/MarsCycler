@@ -6,7 +6,8 @@
 
 
 int main() {
-    double re, rm, muSun, Ve, Vm, Te, Tm, SynodicT, phi, dT1, dT2, dT3, dT4, dThetaM, thetaM, dThetaE, thetaE, dT, dV;
+    double re, rm, muSun, Ve, Vm, Te, Tm, SynodicT, phi, dT1, dT2, dT3, dT4, dThetaM, thetaM, dThetaE, thetaE, dT, dV,
+        dV1, dV2, dV3, dV4;
     vector Re1, Rm1, Rm2, Rm3, Re4, Re5, vEarth, vMars;
 
     re = 1.495979e8;
@@ -29,11 +30,13 @@ int main() {
     dT2 = 28*30*24*3600;
     dT3 = 150*24*3600;
     dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
+    dT = dT1 + dT2 + dT3 + dT4;
 
     printf("dT1 is: %4.2f months\n", dT1/3600/24/30);
     printf("dT2 is: %4.2f months\n", dT2/3600/24/30);
     printf("dT3 is: %4.2f months\n", dT3/3600/24/30);
     printf("dT4 is: %4.2f months\n", dT4/3600/24/30);
+    printf("Total Time in Months: %f\n", dT/3600/24/30);
 
     thetaE = 0;
     thetaM = phi;
@@ -112,15 +115,17 @@ int main() {
 
     vector VinfE8 = vinf(V78[1], vEarth);
 
-    double test = fabs(norm(VinfE8) - norm(VinfE1));
-    printf("Last dV is: %f\n", test);
-
     // Totals
-    dT = dT1 + dT2 + dT3 + dT4;
-    dV = fabs(norm(VinfM3) - norm(VinfM2)) + fabs(norm(VinfM5) - norm(VinfM4)) + fabs(norm(VinfE7) - norm(VinfE6))
-            + fabs(norm(VinfE8) - norm(VinfE1));
+    dV1 = fabs(norm(VinfM3) - norm(VinfM2));
+    dV2 = fabs(norm(VinfM5) - norm(VinfM4));
+    dV3 = fabs(norm(VinfE7) - norm(VinfE6));
+    dV4 = fabs(norm(VinfE8) - norm(VinfE1));
+    dV = dV1 + dV2 + dV3 + dV4;
 
-    printf("Total Time in Years: %f\n", dT/3600/24/365);
+    printf("dV1 is: %f\n", dV1);
+    printf("dV2 is: %f\n", dV2);
+    printf("dV3 is: %f\n", dV3);
+    printf("dV4 is: %f\n", dV4);
     printf("Total Delta V in Km/s: %f\n", dV);
 
     return 0;

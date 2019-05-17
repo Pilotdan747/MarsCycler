@@ -65,8 +65,6 @@ void lambert(vector R1, vector R2, double dT, double mu, int k, vector V[2]) {
         }
     }
     double A = sin(dTheta)*sqrt(r1*r2/(1 - cos(dTheta)));
-    printf("A is %f\n", A);
-
 
     double Znew, Zold, dZ, C, S, y, F, FPri;
     Zold = 0.1;
