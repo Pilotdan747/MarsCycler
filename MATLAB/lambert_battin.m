@@ -25,7 +25,7 @@ c = sqrt(r1^2 + r2^2 - 2*r1*r2*cos(th));
 s = 0.5*(r1 + r2 + c);
 
 L = sqrt((s-c)/s);
-if (th > pi); 
+if (th > pi) 
     L = -L; 
 end
 
