@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.cpp
+cycler.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.h
 
-/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/lambert.cpp
-lambert.h
-/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/lambert.h
-
-/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/lambert.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.h
 helperFuncs.h
 /Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h
 math.h
 -
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h
 

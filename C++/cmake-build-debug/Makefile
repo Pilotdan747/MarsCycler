@@ -123,6 +123,33 @@ MarsCycler/fast:
 	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/build
 .PHONY : MarsCycler/fast
 
+cycler.o: cycler.cpp.o
+
+.PHONY : cycler.o
+
+# target to build an object file
+cycler.cpp.o:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/cycler.cpp.o
+.PHONY : cycler.cpp.o
+
+cycler.i: cycler.cpp.i
+
+.PHONY : cycler.i
+
+# target to preprocess a source file
+cycler.cpp.i:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/cycler.cpp.i
+.PHONY : cycler.cpp.i
+
+cycler.s: cycler.cpp.s
+
+.PHONY : cycler.s
+
+# target to generate assembly for a file
+cycler.cpp.s:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/cycler.cpp.s
+.PHONY : cycler.cpp.s
+
 helperFuncs.o: helperFuncs.cpp.o
 
 .PHONY : helperFuncs.o
@@ -149,33 +176,6 @@ helperFuncs.s: helperFuncs.cpp.s
 helperFuncs.cpp.s:
 	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/helperFuncs.cpp.s
 .PHONY : helperFuncs.cpp.s
-
-lambert.o: lambert.cpp.o
-
-.PHONY : lambert.o
-
-# target to build an object file
-lambert.cpp.o:
-	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/lambert.cpp.o
-.PHONY : lambert.cpp.o
-
-lambert.i: lambert.cpp.i
-
-.PHONY : lambert.i
-
-# target to preprocess a source file
-lambert.cpp.i:
-	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/lambert.cpp.i
-.PHONY : lambert.cpp.i
-
-lambert.s: lambert.cpp.s
-
-.PHONY : lambert.s
-
-# target to generate assembly for a file
-lambert.cpp.s:
-	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/lambert.cpp.s
-.PHONY : lambert.cpp.s
 
 main.o: main.cpp.o
 
@@ -213,12 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MarsCycler"
+	@echo "... cycler.o"
+	@echo "... cycler.i"
+	@echo "... cycler.s"
 	@echo "... helperFuncs.o"
 	@echo "... helperFuncs.i"
 	@echo "... helperFuncs.s"
-	@echo "... lambert.o"
-	@echo "... lambert.i"
-	@echo "... lambert.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

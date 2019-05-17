@@ -83,31 +83,31 @@ CMakeFiles/MarsCycler.dir/helperFuncs.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MarsCycler.dir/helperFuncs.cpp.s"
 	/usr/local/opt/llvm/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.cpp" -o CMakeFiles/MarsCycler.dir/helperFuncs.cpp.s
 
-CMakeFiles/MarsCycler.dir/lambert.cpp.o: CMakeFiles/MarsCycler.dir/flags.make
-CMakeFiles/MarsCycler.dir/lambert.cpp.o: ../lambert.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MarsCycler.dir/lambert.cpp.o"
-	/usr/local/opt/llvm/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MarsCycler.dir/lambert.cpp.o -c "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/lambert.cpp"
+CMakeFiles/MarsCycler.dir/cycler.cpp.o: CMakeFiles/MarsCycler.dir/flags.make
+CMakeFiles/MarsCycler.dir/cycler.cpp.o: ../cycler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MarsCycler.dir/cycler.cpp.o"
+	/usr/local/opt/llvm/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MarsCycler.dir/cycler.cpp.o -c "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.cpp"
 
-CMakeFiles/MarsCycler.dir/lambert.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MarsCycler.dir/lambert.cpp.i"
-	/usr/local/opt/llvm/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/lambert.cpp" > CMakeFiles/MarsCycler.dir/lambert.cpp.i
+CMakeFiles/MarsCycler.dir/cycler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MarsCycler.dir/cycler.cpp.i"
+	/usr/local/opt/llvm/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.cpp" > CMakeFiles/MarsCycler.dir/cycler.cpp.i
 
-CMakeFiles/MarsCycler.dir/lambert.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MarsCycler.dir/lambert.cpp.s"
-	/usr/local/opt/llvm/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/lambert.cpp" -o CMakeFiles/MarsCycler.dir/lambert.cpp.s
+CMakeFiles/MarsCycler.dir/cycler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MarsCycler.dir/cycler.cpp.s"
+	/usr/local/opt/llvm/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.cpp" -o CMakeFiles/MarsCycler.dir/cycler.cpp.s
 
 # Object files for target MarsCycler
 MarsCycler_OBJECTS = \
 "CMakeFiles/MarsCycler.dir/main.cpp.o" \
 "CMakeFiles/MarsCycler.dir/helperFuncs.cpp.o" \
-"CMakeFiles/MarsCycler.dir/lambert.cpp.o"
+"CMakeFiles/MarsCycler.dir/cycler.cpp.o"
 
 # External object files for target MarsCycler
 MarsCycler_EXTERNAL_OBJECTS =
 
 MarsCycler: CMakeFiles/MarsCycler.dir/main.cpp.o
 MarsCycler: CMakeFiles/MarsCycler.dir/helperFuncs.cpp.o
-MarsCycler: CMakeFiles/MarsCycler.dir/lambert.cpp.o
+MarsCycler: CMakeFiles/MarsCycler.dir/cycler.cpp.o
 MarsCycler: CMakeFiles/MarsCycler.dir/build.make
 MarsCycler: CMakeFiles/MarsCycler.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable MarsCycler"

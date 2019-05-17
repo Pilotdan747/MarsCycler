@@ -23,9 +23,9 @@ int main() {
     //Set Up & Initial Conditions
     phi = 30*pi/180;
 
-    dT1 = 150*24*3600;
-    dT2 = 28*30*24*3600;
-    dT3 = 150*24*3600;
+    dT1 = 120*24*3600;
+    dT2 = 25*30*24*3600;
+    dT3 = 120*24*3600;
     dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
     dT = dT1 + dT2 + dT3 + dT4;
 

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/MarsCycler.dir/main.cpp.o"
   "CMakeFiles/MarsCycler.dir/helperFuncs.cpp.o"
-  "CMakeFiles/MarsCycler.dir/lambert.cpp.o"
+  "CMakeFiles/MarsCycler.dir/cycler.cpp.o"
   "MarsCycler.pdb"
   "MarsCycler"
 )

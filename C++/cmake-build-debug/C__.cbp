@@ -82,16 +82,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.cpp">
+			<Option target="MarsCycler"/>
+		</Unit>
+		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.h">
+			<Option target="MarsCycler"/>
+		</Unit>
 		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.cpp">
 			<Option target="MarsCycler"/>
 		</Unit>
 		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h">
-			<Option target="MarsCycler"/>
-		</Unit>
-		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/lambert.cpp">
-			<Option target="MarsCycler"/>
-		</Unit>
-		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/lambert.h">
 			<Option target="MarsCycler"/>
 		</Unit>
 		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/main.cpp">
