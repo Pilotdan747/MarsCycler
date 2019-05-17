@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "helperFuncs.h"
-#include "lambert.h"
+#include "cycler.h"
 
 #define pi 4*atan(1)
 

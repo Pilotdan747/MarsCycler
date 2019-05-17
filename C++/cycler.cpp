@@ -2,7 +2,7 @@
 // Created by Daniel Owen on 2019-05-17.
 //
 
-#include "lambert.h"
+#include "cycler.h"
 
 
 double cycle(double dT1, double dT2, double dT3, double phi) {
@@ -114,7 +114,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     Re5.z = re * 0;
 
     vector V78[2];
-    lambert(Re4, Re5, dT4, muSun, 1, V78); // 0 for regrograde
+    lambert(Re4, Re5, dT4, muSun, 1, V78);
 
     vector VinfE7 = vinf(V78[0], vEarth);
 

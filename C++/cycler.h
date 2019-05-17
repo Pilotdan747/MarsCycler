@@ -2,8 +2,8 @@
 // Created by Daniel Owen on 2019-05-17.
 //
 
-#ifndef C___LAMBERT_H
-#define C___LAMBERT_H
+#ifndef C___CYCLER_H
+#define C___CYCLER_H
 
 #include "helperFuncs.h"
 #include <math.h>
@@ -12,4 +12,4 @@
 
 double cycle(double dT1, double dT2, double dT3, double phi);
 
-#endif //C___LAMBERT_H
+#endif //C___CYCLER_H
