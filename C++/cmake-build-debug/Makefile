@@ -123,6 +123,33 @@ MarsCyler/fast:
 	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/build
 .PHONY : MarsCyler/fast
 
+Lambert_Battin.o: Lambert_Battin.cpp.o
+
+.PHONY : Lambert_Battin.o
+
+# target to build an object file
+Lambert_Battin.cpp.o:
+	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/Lambert_Battin.cpp.o
+.PHONY : Lambert_Battin.cpp.o
+
+Lambert_Battin.i: Lambert_Battin.cpp.i
+
+.PHONY : Lambert_Battin.i
+
+# target to preprocess a source file
+Lambert_Battin.cpp.i:
+	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/Lambert_Battin.cpp.i
+.PHONY : Lambert_Battin.cpp.i
+
+Lambert_Battin.s: Lambert_Battin.cpp.s
+
+.PHONY : Lambert_Battin.s
+
+# target to generate assembly for a file
+Lambert_Battin.cpp.s:
+	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/Lambert_Battin.cpp.s
+.PHONY : Lambert_Battin.cpp.s
+
 cycler.o: cycler.cpp.o
 
 .PHONY : cycler.o
@@ -213,6 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MarsCyler"
+	@echo "... Lambert_Battin.o"
+	@echo "... Lambert_Battin.i"
+	@echo "... Lambert_Battin.s"
 	@echo "... cycler.o"
 	@echo "... cycler.i"
 	@echo "... cycler.s"

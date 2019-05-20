@@ -7,6 +7,7 @@
 
 #include "helperFuncs.h"
 #include <math.h>
+#include "Lambert_Battin.h"
 
 #define pi 4*atan(1)
 

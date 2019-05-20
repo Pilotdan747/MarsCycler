@@ -85,6 +85,12 @@
 		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/CMakeLists.txt">
 			<Option target="MarsCyler"/>
 		</Unit>
+		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin.cpp">
+			<Option target="MarsCyler"/>
+		</Unit>
+		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin.h">
+			<Option target="MarsCyler"/>
+		</Unit>
 		<Unit filename="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.cpp">
 			<Option target="MarsCyler"/>
 		</Unit>
