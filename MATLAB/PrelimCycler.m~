@@ -6,7 +6,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 close all
 clc
-clear
+%clear
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 re = 1.495979e8;
@@ -23,10 +23,10 @@ Tm = 2*pi/sqrt(muSun)*rm^(3/2);
 SynodicT = 1/(abs(1/Te - 1/Tm));
 
 % Set Up
-phi = deg2rad(30);
-dT1 = 120*24*3600;
-dT2 = 25*30*24*3600;
-dT3 = 120*24*3600;
+phi = 15.5*pi/180;%deg2rad(15.5);
+dT1 = 150*24*3600;
+dT2 = 28*30*24*3600;
+dT3 = 100*24*3600;
 dT4 = SynodicT*2 - (dT1 + dT2 + dT3); %12*30*24*3600;
 
 figure
@@ -36,117 +36,148 @@ hold on
 plot(rm*cos(theta), rm*sin(theta), 'r');
 hold on
 
+for i = 1:1000
+    phi = deg2rad(i/10);
+    dV(i) = cycle(dT1, dT2, dT3, dT4, phi);
+end
+
+plot(1:0.1:1000
+
+
+function dV = cycle(dT1, dT2, dT3, dT4, phi)
+    re = 1.495979e8;
+    rm = 2.279483e8;
+    muSun = 1.32712440e11;
+    Ve = sqrt(muSun/re);
+    Vm = sqrt(muSun/rm);
+    Te = 2*pi/sqrt(muSun)*re^(3/2);
+    Tm = 2*pi/sqrt(muSun)*rm^(3/2);
 %% Earth to Mars CR2BP
-Re = re*[1; 0; 0];
-Rm = rm*[cos(phi); sin(phi); 0];
+    Re = re*[1; 0; 0];
+    Rm = rm*[cos(phi); sin(phi); 0];
 
-dThetaM = 2*pi*(dT1/Tm);
-thetaM2 = phi + dThetaM;
+    dThetaM = 2*pi*(dT1/Tm);
+    thetaM2 = phi + dThetaM;
 
-dThetaE = 2*pi*(dT1/Te);
-thetaE2 = 0 + dThetaE;
-
-Rm2 = rm*[cos(thetaM2); sin(thetaM2); 0];
+    dThetaE = 2*pi*(dT1/Te);
+    thetaE2 = 0 + dThetaE;
+    
+    Rm2 = rm*[cos(thetaM2); sin(thetaM2); 0];
 
 %Velocities
-[V1, V2] = lambert_battin(Re, Rm2, dT1, muSun, 0);
+    [V1, V2] = lambert_battin(Re, Rm2, dT1, muSun, 0);
 
-OE1 = SV2OE(muSun, Re, V1);
-OE2 = SV2OE(muSun, Rm2, V2);
+    OE1 = SV2OE(muSun, Re, V1);
+    OE2 = SV2OE(muSun, Rm2, V2);
 
-theta = linspace(OE1(6), OE2(6));
-r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
+    theta = linspace(OE1(6), OE2(6));
+    r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
 
-x = r.*cos(theta);
-y = r.*sin(theta);
+    x = r.*cos(theta + OE1(5));
+    y = r.*sin(theta + OE1(5));
 
-plot(x, y, 'k')
-hold on
+%plot(x, y, 'k')
+%hold on
 
-VinfE1 = V1 - Ve*[1; 0; 0];
-VinfM2 = V2 - Vm*[cos(thetaM2); sin(thetaM2); 0];
-vinfE1 = norm(VinfE1);
-vinfM2 = norm(VinfM2);
+    VinfE1 = V1 - Ve*[1; 0; 0];
+    VinfM2 = V2 - Vm*[cos(thetaM2); sin(thetaM2); 0];
+    vinfE1 = norm(VinfE1);
+    vinfM2 = norm(VinfM2);
 
 
 %% Mars to Mars
 
-dThetaM2 = 2*pi*(dT2/Tm);
-thetaM3 = thetaM2 + dThetaM2;
+    dThetaM2 = 2*pi*(dT2/Tm);
+    thetaM3 = thetaM2 + dThetaM2;
 
-dThetaE2 = 2*pi*(dT2/Te);
-thetaE3 = thetaE2 + dThetaE2;
+    dThetaE2 = 2*pi*(dT2/Te);
+    thetaE3 = thetaE2 + dThetaE2;
 
-Rm3 = rm*[cos(thetaM3); sin(thetaM3); 0];
+    Rm3 = rm*[cos(thetaM3); sin(thetaM3); 0];
 
 %Velocities
-[V3, V4] = lambert_battin(Rm2, Rm3, dT2, muSun, 0);
+    [V3, V4] = lambert_battin(Rm2, Rm3, dT2, muSun, 0);
 
-OE1 = SV2OE(muSun, Rm2, V3);
-OE2 = SV2OE(muSun, Rm3, V4);
+    OE1 = SV2OE(muSun, Rm2, V3);
+    OE2 = SV2OE(muSun, Rm3, V4);
 
-theta = linspace(OE1(6), OE2(6));
-r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
+    theta = linspace(OE1(6), OE2(6));
+    r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
 
-x = r.*cos(theta);
-y = r.*sin(theta);
+    x = r.*cos(theta + OE1(5));
+    y = r.*sin(theta + OE1(5));
 
-plot(x, y, 'k')
-hold on
+%plot(x, y, 'k')
+%hold on
 
-VinfM3 = V3 - Vm*[cos(thetaM2); sin(thetaM2); 0];
-VinfM4 = V4 - Vm*[cos(thetaM3); sin(thetaM3); 0];
-vinfM3 = norm(VinfM3);
-vinfM4 = norm(VinfM4);
+    VinfM3 = V3 - Vm*[cos(thetaM2); sin(thetaM2); 0];
+    VinfM4 = V4 - Vm*[cos(thetaM3); sin(thetaM3); 0];
+    vinfM3 = norm(VinfM3);
+    vinfM4 = norm(VinfM4);
 
 
 %% Mars to Earth
 
-dThetaM3 = 2*pi*(dT3/Tm);
-thetaM4 = thetaM3 + dThetaM3;
+    dThetaM3 = 2*pi*(dT3/Tm);
+    thetaM4 = thetaM3 + dThetaM3;
 
-dThetaE3 = 2*pi*(dT3/Te);
-thetaE4 = thetaE3 + dThetaE3;
+    dThetaE3 = 2*pi*(dT3/Te);
+    thetaE4 = thetaE3 + dThetaE3;
 
-Re4 = re*[cos(thetaE4); sin(thetaE4); 0];
+    Re4 = re*[cos(thetaE4); sin(thetaE4); 0];
 
-[V5, V6] = lambert_battin(Rm3, Re4, dT3, muSun, 0);
+    [V5, V6] = lambert_battin(Rm3, Re4, dT3, muSun, 0);
 
-OE1 = SV2OE(muSun, Rm3, V5);
-OE2 = SV2OE(muSun, Re4, V6);
+    OE1 = SV2OE(muSun, Rm3, V5);
+    OE2 = SV2OE(muSun, Re4, V6);
 
-theta = linspace(OE1(6), OE2(6));
-r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
+    theta = linspace(OE1(6), OE2(6) + 2*pi);
+    r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
 
-x = r.*cos(theta);
-y = r.*sin(theta);
+    x = r.*cos(theta + OE1(5));
+    y = r.*sin(theta + OE1(5));
 
-plot(x, y, 'k')
-hold on
+%plot(x, y, 'k')
+%hold on
 
-VinfM5 = V5 - Vm*[cos(thetaM3); sin(thetaM3); 0];
-VinfE6 = V6 - Ve*[cos(thetaE4); sin(thetaE4); 0];
-vinfM5 = norm(VinfM5);
-vinfE6 = norm(VinfE6);
+    VinfM5 = V5 - Vm*[cos(thetaM3); sin(thetaM3); 0];
+    VinfE6 = V6 - Ve*[cos(thetaE4); sin(thetaE4); 0];
+    vinfM5 = norm(VinfM5);
+    vinfE6 = norm(VinfE6);
 
 %% Earth to Earth
+    
+    dThetaM4 = 2*pi*(dT4/Tm);
+    thetaM5 = thetaM4 + dThetaM4;
 
-dThetaM4 = 2*pi*(dT4/Tm);
-thetaM5 = thetaM4 + dThetaM4;
+    dThetaE4 = 2*pi*(dT4/Te);
+    thetaE5 = thetaE4 + dThetaE4;
 
-dThetaE4 = 2*pi*(dT4/Te);
-thetaE5 = thetaE4 + dThetaE4;
+    Rm5 = rm*[cos(thetaM5); sin(thetaM5); 0];
+    Re5 = re*[cos(thetaE5); sin(thetaE5); 0];
 
-Re5 = re*[cos(thetaE5); sin(thetaE5); 0];
+    [V7, V8] = lambert_battin(Re4, Re5, dT4, muSun, 0);
 
-[V7, V8] = lambert_battin(Re4, Re5, dT4, muSun, 0);
+    OE1 = SV2OE(muSun, Re4, V7);
+    OE2 = SV2OE(muSun, Re5, V8);
 
-VinfE7 = V7 - Ve*[cos(thetaE4); sin(thetaE4); 0];
-VinfE8 = V8 - Ve*[cos(thetaE5); sin(thetaE5); 0];
-vinfE7 = norm(VinfE7);
-vinfE8 = norm(VinfE8);
+    theta = linspace(OE1(6), OE2(6));
+    r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
+
+    x = r.*cos(theta + OE1(5));
+    y = r.*sin(theta + OE1(5));
+
+%plot(x, y, 'k')
+%hold on
+%axis equal
+
+    VinfE7 = V7 - Ve*[cos(thetaE4); sin(thetaE4); 0];
+    VinfE8 = V8 - Ve*[cos(thetaE5); sin(thetaE5); 0];
+    vinfE7 = norm(VinfE7);
+    vinfE8 = norm(VinfE8);
 
 %% Totals
 
-dT = dT1 + dT2 + dT3 + dT4;
-dV = abs(vinfM3 - vinfM2) + abs(vinfM5 - vinfM4) + abs(vinfE7 - vinfE6) + abs(vinfE8 - vinfE1);
+    dT = dT1 + dT2 + dT3 + dT4;
+    dV = abs(vinfM3 - vinfM2) + abs(vinfM5 - vinfM4) + abs(vinfE7 - vinfE6) + abs(vinfE8 - vinfE1);
+end

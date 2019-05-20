@@ -2,6 +2,7 @@
 #include <cmath>
 #include "helperFuncs.h"
 #include "cycler.h"
+#include <time.h>
 
 #define pi 4*atan(1)
 
@@ -35,9 +36,39 @@ int main() {
     printf("dT4 is: %4.2f months\n", dT4/3600/24/30);
     printf("Total Time in Months: %f\n", dT/3600/24/30);
 
-    double dV = cycle(dT1, dT2, dT3, phi);
+    clock_t pre = clock();
 
-    printf("Total Delta V in Km/s: %f\n", dV);
+    double dV[1000];
+
+    for (int i = 0; i < 1000; i++) {
+        phi = i/10.0*pi/180;
+        dV[i] = cycle(dT1, dT2, dT3, phi);
+    }
+
+    clock_t post = clock();
+
+    double time = (double) (post - pre) / CLOCKS_PER_SEC;
+
+    printf("It took %f seconds to run\n", time);
+
+    double dV1 = cycle(dT1, dT2, dT3, 15.5*pi/180);
+    printf("dV is %f\n", dV1);
+
+    FILE *outfile = fopen("Output.csv", "w");
+
+    for (int i = 0; i < 1000; i++) {
+        fprintf(outfile, "%f, ", dV[i]);
+    }
+
+    fprintf(outfile, "\n");
+
+    for (int i = 0; i < 1000; i++) {
+        fprintf(outfile, "%f, ", i/10.0);
+    }
+
+    fclose(outfile);
+
+    //printf("Total Delta V in Km/s: %f\n", dV);
 
     return 0;
 }
