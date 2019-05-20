@@ -25,7 +25,7 @@ SynodicT = 1/(abs(1/Te - 1/Tm));
 % Set Up
 phi = deg2rad(30);
 dT1 = 120*24*3600;
-dT2 = 28*30*24*3600;
+dT2 = 25*30*24*3600;
 dT3 = 120*24*3600;
 dT4 = SynodicT*2 - (dT1 + dT2 + dT3); %12*30*24*3600;
 
@@ -57,8 +57,8 @@ OE2 = SV2OE(muSun, Rm2, V2);
 theta = linspace(OE1(6), OE2(6));
 r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
 
-x = r.*cos(theta + OE1(5));
-y = r.*sin(theta + OE1(5));
+x = r.*cos(theta);
+y = r.*sin(theta);
 
 plot(x, y, 'k')
 hold on
@@ -88,8 +88,8 @@ OE2 = SV2OE(muSun, Rm3, V4);
 theta = linspace(OE1(6), OE2(6));
 r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
 
-x = r.*cos(theta + OE1(5));
-y = r.*sin(theta + OE1(5));
+x = r.*cos(theta);
+y = r.*sin(theta);
 
 plot(x, y, 'k')
 hold on
@@ -115,11 +115,11 @@ Re4 = re*[cos(thetaE4); sin(thetaE4); 0];
 OE1 = SV2OE(muSun, Rm3, V5);
 OE2 = SV2OE(muSun, Re4, V6);
 
-theta = linspace(OE1(6), OE2(6) + 2*pi);
+theta = linspace(OE1(6), OE2(6));
 r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
 
-x = r.*cos(theta + OE1(5));
-y = r.*sin(theta + OE1(5));
+x = r.*cos(theta);
+y = r.*sin(theta);
 
 plot(x, y, 'k')
 hold on
@@ -137,23 +137,9 @@ thetaM5 = thetaM4 + dThetaM4;
 dThetaE4 = 2*pi*(dT4/Te);
 thetaE5 = thetaE4 + dThetaE4;
 
-Rm5 = rm*[cos(thetaM5); sin(thetaM5); 0];
 Re5 = re*[cos(thetaE5); sin(thetaE5); 0];
 
 [V7, V8] = lambert_battin(Re4, Re5, dT4, muSun, 0);
-
-OE1 = SV2OE(muSun, Re4, V7);
-OE2 = SV2OE(muSun, Re5, V8);
-
-theta = linspace(OE1(6), OE2(6));
-r = OE1(1)^2/muSun./(1 + OE1(2).*cos(theta));
-
-x = r.*cos(theta + OE1(5));
-y = r.*sin(theta + OE1(5));
-
-plot(x, y, 'k')
-hold on
-axis equal
 
 VinfE7 = V7 - Ve*[cos(thetaE4); sin(thetaE4); 0];
 VinfE8 = V8 - Ve*[cos(thetaE5); sin(thetaE5); 0];
