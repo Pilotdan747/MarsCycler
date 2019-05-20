@@ -3,6 +3,8 @@
 #include "helperFuncs.h"
 #include "cycler.h"
 #include <time.h>
+#include <chrono>
+
 
 #define pi 4*atan(1)
 
@@ -36,25 +38,33 @@ int main() {
     printf("dT4 is: %4.2f months\n", dT4/3600/24/30);
     printf("Total Time in Months: %f\n", dT/3600/24/30);
 
-    clock_t pre = clock();
+    using namespace std::chrono;
+    auto start = high_resolution_clock::now();
 
-    double dV[1000];
+    double dV[1000][10];
 
-    for (int i = 0; i < 1000; i++) {
-        phi = i/10.0*pi/180;
-        dV[i] = cycle(dT1, dT2, dT3, phi);
+#pragma omp parallel for
+    {
+        for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < 10; j++) {
+                dT1 = 15*j*24*3600;
+                phi = i / 10.0 * pi / 180;
+                dV[i][j] = cycle(dT1, dT2, dT3, phi);
+            }
+        }
     }
 
-    clock_t post = clock();
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
 
-    double time = (double) (post - pre) / CLOCKS_PER_SEC;
+    double time = duration.count();
 
-    printf("It took %f seconds to run\n", time);
+    printf("It took %f seconds to run\n", time/1e6);
 
     double dV1 = cycle(dT1, dT2, dT3, 15.5*pi/180);
     printf("dV is %f\n", dV1);
 
-    FILE *outfile = fopen("Output.csv", "w");
+    /*ILE *outfile = fopen("Output.csv", "w");
 
     for (int i = 0; i < 1000; i++) {
         fprintf(outfile, "%f, ", dV[i]);
@@ -66,7 +76,7 @@ int main() {
         fprintf(outfile, "%f, ", i/10.0);
     }
 
-    fclose(outfile);
+    fclose(outfile); */
 
     //printf("Total Delta V in Km/s: %f\n", dV);
 
