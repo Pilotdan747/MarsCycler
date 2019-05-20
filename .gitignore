@@ -119,3 +119,16 @@ fabric.properties
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/c++,clion
+C++/cmake-build-debug/Makefile
+C++/cmake-build-debug/CMakeFiles/TargetDirectories.txt
+C++/cmake-build-debug/CMakeFiles/Makefile2
+C++/cmake-build-debug/CMakeFiles/Makefile.cmake
+C++/cmake-build-debug/CMakeFiles/CMakeOutput.log
+C++/cmake-build-debug/CMakeFiles/C__.dir/progress.make
+C++/cmake-build-debug/CMakeFiles/C__.dir/link.txt
+C++/cmake-build-debug/CMakeFiles/C__.dir/flags.make
+C++/cmake-build-debug/CMakeFiles/C__.dir/DependInfo.cmake
+C++/cmake-build-debug/CMakeFiles/C__.dir/cmake_clean.cmake
+C++/cmake-build-debug/CMakeFiles/C__.dir/build.make
+C++/cmake-build-debug/C__.cbp
+C++/.idea/workspace.xml
