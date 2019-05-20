@@ -47,7 +47,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     Rm2.z = 0;
 
     vector V12[2];
-    lambert_battin(Re1, Rm2, dT1, muSun, 1, V12);
+    lambert_battin(Re1, Rm2, dT1, muSun, 0, V12);
 
     vEarth.x = Ve * 1;
     vEarth.y = Ve * 0;
@@ -71,7 +71,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     Rm3.z = rm * 0;
 
     vector V34[2];
-    lambert_battin(Rm2, Rm3, dT2, muSun, 1, V34);
+    lambert_battin(Rm2, Rm3, dT2, muSun, 0, V34);
 
     vector VinfM3 = vinf(V34[0], vMars);
 
@@ -93,7 +93,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     Re4.z = re * 0;
 
     vector V56[2];
-    lambert_battin(Rm3, Re4, dT3, muSun, 1, V56);
+    lambert_battin(Rm3, Re4, dT3, muSun, 0, V56);
 
     vEarth.x = Ve * cos(thetaE);
     vEarth.y = Ve * sin(thetaE);
@@ -114,7 +114,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     Re5.z = re * 0;
 
     vector V78[2];
-    lambert_battin(Re4, Re5, dT4, muSun, 1, V78);
+    lambert_battin(Re4, Re5, dT4, muSun, 0, V78);
 
     vector VinfE7 = vinf(V78[0], vEarth);
 

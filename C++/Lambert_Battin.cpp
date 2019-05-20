@@ -32,7 +32,7 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
     l = pow(((1-L)/(1+L)),2);
     m = pow(T, 2)/pow((1+L), 6);
 
-    Tp = 4/3*pow((1-L), 3);
+    Tp = 4.0/3.0*pow((1-L), 3);
     if (T <= Tp)
         x0 = 0;
     else
@@ -50,7 +50,7 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
         h2 = m * (x - l + z) / den;
         B = 0.25 * 27 * h2 / pow((1 + h1), 3);
         u = 0.5 * B / (1 + sqrt(1 + B));
-        K = battin_K(u);
+        K = battin_K(u); //Check this
         y = (1 + h1) / 3 * (2 + sqrt(1 + B) / (1 + 2 * u * pow(K, 2)));
         x = sqrt(0.25 * pow((1 - l), 2) + m / pow(y, 2)) - 0.5 * (1 + l);
         /*if (abs(x - x0) < eps)
@@ -59,7 +59,7 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
             x0 = x;
     }
 
-    a = mu*pow(dT, 2)/16/pow(r0p, 2)/x/pow(y, 2);
+    a = mu*pow(dT, 2)/16.0/pow(r0p, 2)/x/pow(y, 2);
 
     double b, amin, tmin, ae, dE, f, g, gdot, ah, bh, dH;
 
@@ -92,8 +92,8 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
 
     vector V1, V2;
 
-    V1.x = (R2.x - f*R1.x)/g; V1.y = (R2.y - f*R2.y)/g; V1.z = (R2.z - f*R1.z)/g;
-    V2.x = (gdot*R2.x - R1.x)/g; V2.y = (gdot*R2.y - R2.y)/g; V2.z = (gdot*R2.z - R1.z)/g;
+    V1.x = (R2.x - f*R1.x)/g; V1.y = (R2.y - f*R1.y)/g; V1.z = (R2.z - f*R1.z)/g;
+    V2.x = (gdot*R2.x - R1.x)/g; V2.y = (gdot*R2.y - R1.y)/g; V2.z = (gdot*R2.z - R1.z)/g;
 
     V[0] = V1;
     V[1] = V2;
@@ -117,7 +117,7 @@ double battin_xi(double x) {
     if (abs(C) < tiny)
         C = tiny;
 
-    D = 1/D;
+    D = 1.0/D;
     Del = C*D;
     f = f0*Del;
     f0 = f; C0 = C; D0 = D;
@@ -126,30 +126,30 @@ double battin_xi(double x) {
     if (abs(D) < tiny)
         D = tiny;
 
-    C = 5+n + 1/C0;
+    C = 5+n + 1.0/C0;
     if (abs(C) < tiny)
         C = tiny;
 
-    D = 1/D;  Del = C*D;
+    D = 1.0/D;  Del = C*D;
     f = f0*Del;
     f0 = f; C0 = C; D0 = D;
 
-    D = 1 + 9/7*n*D0;
+    D = 1 + 9.0/7.0*n*D0;
     if (abs(D) < tiny)
         D = tiny;
 
-    C = 1 + 9/7*n/C0;
+    C = 1 + 9.0/7.0*n/C0;
     if (abs(C) < tiny)
         C = tiny;
 
-    D = 1/D;  Del = C*D;
+    D = 1.0/D;  Del = C*D;
     f = f0*Del;
     f0 = f; C0 = C; D0 = D;
 
 
     double c;
     for (int i = 0; i < 100; i++) {
-        c = (i + 3) ^ 2 / ((2 * (i + 3)) ^ 2 - 1);
+        c = pow((i + 3), 2) / (pow((2 * (i + 3)), 2) - 1);
         D = 1 + c * n * D0;
         if (abs(D) < tiny)
             D = tiny;
@@ -179,11 +179,11 @@ double battin_K(double u) {
 
     f0 = tiny; C0 = f0; D0 = 0;
 
-    D = 1 + 1/3*D0;
+    D = 1 + 1.0/3.0*D0;
     if (abs(D) < tiny)
         D = tiny;
 
-    C = 1 + 1/3/C0;
+    C = 1 + 1.0/3.0/C0;
     if (abs(C) < tiny)
         C = tiny;
 
@@ -191,15 +191,15 @@ double battin_K(double u) {
     f = f0*Del;
     f0 = f; C0 = C; D0 = D;
 
-    D = 1 + 4/27*u*D0;
+    D = 1 + 4.0/27.0*u*D0;
     if (abs(D) < tiny)
         D = tiny;
 
-    C = 1 + 4/27*u/C0;
+    C = 1 + 4.0/27.0*u/C0;
     if (abs(C) < tiny)
         C = tiny;
 
-    D = 1/D;  Del = C*D;
+    D = 1.0/D;  Del = C*D;
     f = f0*Del;
     f0 = f; C0 = C; D0 = D;
 
@@ -215,7 +215,7 @@ double battin_K(double u) {
         if (abs(C) < tiny)
             C = tiny;
 
-        D = 1 / D;
+        D = 1.0 / D;
         Del = C * D;
         f = f0 * Del;
 
@@ -230,7 +230,7 @@ double battin_K(double u) {
         if (abs(C) < tiny)
             C = tiny;
 
-        D = 1 / D;
+        D = 1.0 / D;
         Del = C * D;
         f = f0 * Del;
 
