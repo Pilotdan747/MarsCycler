@@ -41,15 +41,27 @@ int main() {
     using namespace std::chrono;
     auto start = high_resolution_clock::now();
 
-    double dV[1000][10];
+    int dim1, dim2, dim3, dim4;
+    dim1 = 20;
+    dim2 = 20;
+    dim3 = 20;
+    dim4 = 20;
+
+    double dV[dim1][dim2][dim3][dim4];
 
 #pragma omp parallel for
     {
-        for (int i = 0; i < 1000; i++) {
-            for (int j = 0; j < 10; j++) {
-                dT1 = 15*j*24*3600;
-                phi = i / 10.0 * pi / 180;
-                dV[i][j] = cycle(dT1, dT2, dT3, phi);
+        for (int i = 0; i < dim1; i++) {
+            for (int j = 0; j < dim2; j++) {
+                for (int k = 0; k < dim3; k++) {
+                    for (int l = 0; l < dim4; l++) {
+                        dT1 = (150 + j * 10) * 24 * 3600;
+                        dT2 = (23 + k) * 30 * 24 * 3600;
+                        dT3 = (100 + l * 10) * 24 * 3600;
+                        phi = i * 10 * pi / 180;
+                        dV[i][j][k][l] = cycle(dT1, dT2, dT3, phi);
+                    }
+                }
             }
         }
     }
@@ -64,19 +76,24 @@ int main() {
     double dV1 = cycle(dT1, dT2, dT3, 15.5*pi/180);
     printf("dV is %f\n", dV1);
 
-    /*ILE *outfile = fopen("Output.csv", "w");
+    FILE *outfile = fopen("Output.csv", "w");
 
-    for (int i = 0; i < 1000; i++) {
-        fprintf(outfile, "%f, ", dV[i]);
+    fprintf(outfile, "%d\n", dim1);
+    fprintf(outfile, "%d\n", dim2);
+    fprintf(outfile, "%d\n", dim3);
+    fprintf(outfile, "%d\n", dim4);
+
+    for (int i = 0; i < dim1; i++) {
+        for (int j = 0; j < dim2; j++) {
+            for (int k = 0; k < dim3; k++) {
+                for (int l = 0; l < dim4; l++) {
+                    fprintf(outfile, "%f, ", dV[i][j][k][l]);
+                }
+            }
+        }
     }
 
-    fprintf(outfile, "\n");
-
-    for (int i = 0; i < 1000; i++) {
-        fprintf(outfile, "%f, ", i/10.0);
-    }
-
-    fclose(outfile); */
+    fclose(outfile);
 
     //printf("Total Delta V in Km/s: %f\n", dV);
 
