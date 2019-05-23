@@ -6,7 +6,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 close all
 clc
-%clear
+clear
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 re = 1.495979e8;
@@ -23,10 +23,10 @@ Tm = 2*pi/sqrt(muSun)*rm^(3/2);
 SynodicT = 1/(abs(1/Te - 1/Tm));
 
 % Set Up
-phi = 15.5*pi/180;%deg2rad(15.5);
+phi = 40*pi/180;
 dT1 = 150*24*3600;
-dT2 = 28*30*24*3600;
-dT3 = 100*24*3600;
+dT2 = 26*30*24*3600;
+dT3 = 120*24*3600;
 dT4 = SynodicT*2 - (dT1 + dT2 + dT3); %12*30*24*3600;
 
 figure
@@ -36,16 +36,17 @@ hold on
 plot(rm*cos(theta), rm*sin(theta), 'r');
 hold on
 
-for i = 1:10000
-    phi1(i) = i/100;
-    phi = deg2rad(phi1(i));
-    dV(i) = cycle(dT1, dT2, dT3, dT4, phi);
-end
+% for i = 1:10000
+%     phi1(i) = i/100;
+%     phi = deg2rad(phi1(i));
+%     dV(i) = cycle(dT1, dT2, dT3, dT4, phi);
+% end
 
-figure
-plot(phi1, dV)
-grid on
+% figure
+% plot(phi1, dV)
+% grid on
 
+dV = cycle(dT1, dT2, dT3, dT4, phi);
 
 function dV = cycle(dT1, dT2, dT3, dT4, phi)
     re = 1.495979e8;

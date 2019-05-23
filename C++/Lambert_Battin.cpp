@@ -6,8 +6,11 @@
 
 #define pi 4*atan(1)
 
+double eps = 10-15;
+
 void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vector V[2]) {
     double r1, r2, kk, theta, c, s, L, T, r0p, l, m, Tp, x0, x, a;
+
 
     r1 = norm(R1);
     r2 = norm(R2);
@@ -53,9 +56,9 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
         K = battin_K(u); //Check this
         y = (1 + h1) / 3 * (2 + sqrt(1 + B) / (1 + 2 * u * pow(K, 2)));
         x = sqrt(0.25 * pow((1 - l), 2) + m / pow(y, 2)) - 0.5 * (1 + l);
-        /*if (abs(x - x0) < eps)
+        if (abs(x - x0) < eps)
             break;
-        else*/
+        else
             x0 = x;
     }
 
@@ -161,9 +164,9 @@ double battin_xi(double x) {
         D = 1 / D;
         Del = C * D;
         f = f0 * Del;
-        /*if (abs(Del - 1) < eps)
+        if (abs(Del - 1) < eps)
             break;
-        else*/
+        else
 
             f0 = f;
             C0 = C;
@@ -234,9 +237,9 @@ double battin_K(double u) {
         Del = C * D;
         f = f0 * Del;
 
-        /*if (abs(Del - 1) < eps)
+        if (abs(Del - 1) < eps)
             break;
-        else*/
+        else
             f0 = f;
             C0 = C;
             D0 = D;

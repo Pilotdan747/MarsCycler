@@ -18,8 +18,8 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     Ve = sqrt(muSun/re);
     Vm = sqrt(muSun/rm);
 
-    Te = 2*pi/sqrt(muSun)*pow(re, 3.0 / 2.0);
-    Tm = 2*pi/sqrt(muSun)*pow(rm,3.0/2.0);
+    Te = 2*pi/sqrt(muSun)*pow(re, 3.0/2.0);
+    Tm = 2*pi/sqrt(muSun)*pow(rm, 3.0/2.0);
 
     SynodicT = 1/(fabs(1/Te - 1/Tm));
 
