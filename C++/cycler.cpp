@@ -15,6 +15,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
 
     muSun = 1.32712440e11;
 
+    //Assume CRP Model
     Ve = sqrt(muSun/re);
     Vm = sqrt(muSun/rm);
 
@@ -23,18 +24,16 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
 
     SynodicT = 1/(fabs(1/Te - 1/Tm));
 
+    //Already check for negative
     dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
 
     thetaE = 0;
     thetaM = phi;
 
 // Earth to Mars
-    Re1.x = re * 1;
-    Re1.y = re * 0;
-    Re1.z = re * 0;
-    Rm1.x = rm * cos(phi);
-    Rm1.y = rm * sin(phi);
-    Rm1.z = rm * 0;
+    //Position Vectors
+    Re1.x = re * 1; Re1.y = re * 0; Re1.z = re * 0;
+    Rm1.x = rm * cos(phi); Rm1.y = rm * sin(phi); Rm1.z = rm * 0;
 
     dThetaM = 2 * pi * (dT1 / Tm);
     thetaM += dThetaM;
@@ -42,20 +41,17 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     dThetaE = 2 * pi * (dT1 / Te);
     thetaE += dThetaE;
 
-    Rm2.x = rm * cos(thetaM);
-    Rm2.y = rm * sin(thetaM);
-    Rm2.z = 0;
+    Rm2.x = rm * cos(thetaM); Rm2.y = rm * sin(thetaM); Rm2.z = 0;
 
+    //Trajectory Solver
     vector V12[2];
     lambert_battin(Re1, Rm2, dT1, muSun, 0, V12);
 
-    vEarth.x = Ve * 1;
-    vEarth.y = Ve * 0;
-    vEarth.z = Ve * 0;
-    vMars.x = Vm * cos(thetaM);
-    vMars.y = Vm * sin(thetaM);
-    vMars.z = Vm * 0;
+    //Velocity Vectors
+    vEarth.x = Ve * 1; vEarth.y = Ve * 0; vEarth.z = Ve * 0;
+    vMars.x = Vm * cos(thetaM); vMars.y = Vm * sin(thetaM); vMars.z = Vm * 0;
 
+    //Vinf vectors
     vector VinfE1 = vinf(V12[0], vEarth);
     vector VinfM2 = vinf(V12[1], vMars);
 
@@ -66,19 +62,18 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     dThetaE = 2 * pi * (dT2 / Te);
     thetaE += dThetaE;
 
-    Rm3.x = rm * cos(thetaM);
-    Rm3.y = rm * sin(thetaM);
-    Rm3.z = rm * 0;
+    Rm3.x = rm * cos(thetaM); Rm3.y = rm * sin(thetaM); Rm3.z = rm * 0;
 
+    //Trajectory Solver
     vector V34[2];
     lambert_battin(Rm2, Rm3, dT2, muSun, 0, V34);
 
+    //Vinf Vector leaving
     vector VinfM3 = vinf(V34[0], vMars);
 
-    vMars.x = Vm * cos(thetaM);
-    vMars.y = Vm * sin(thetaM);
-    vMars.z = Vm * 0;
+    vMars.x = Vm * cos(thetaM); vMars.y = Vm * sin(thetaM); vMars.z = Vm * 0;
 
+    //Vinf vector arriving
     vector VinfM4 = vinf(V34[1], vMars);
 
 // Mars to Earth
@@ -88,17 +83,15 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     dThetaE = 2 * pi * (dT3 / Te);
     thetaE += dThetaE;
 
-    Re4.x = re * cos(thetaE);
-    Re4.y = re * sin(thetaE);
-    Re4.z = re * 0;
+    Re4.x = re * cos(thetaE); Re4.y = re * sin(thetaE); Re4.z = re * 0;
 
+    //Trajectory Solver
     vector V56[2];
     lambert_battin(Rm3, Re4, dT3, muSun, 0, V56);
 
-    vEarth.x = Ve * cos(thetaE);
-    vEarth.y = Ve * sin(thetaE);
-    vEarth.z = Ve * 0;
+    vEarth.x = Ve * cos(thetaE); vEarth.y = Ve * sin(thetaE); vEarth.z = Ve * 0;
 
+    //Vinf vectors
     vector VinfM5 = vinf(V56[0], vMars);
     vector VinfE6 = vinf(V56[1], vEarth);
 
@@ -109,18 +102,15 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     dThetaE = 2 * pi * (dT4 / Te);
     thetaE += dThetaE;
 
-    Re5.x = re * cos(thetaE);
-    Re5.y = re * sin(thetaE);
-    Re5.z = re * 0;
+    Re5.x = re * cos(thetaE); Re5.y = re * sin(thetaE); Re5.z = re * 0;
 
+    //Trajectory Solver
     vector V78[2];
     lambert_battin(Re4, Re5, dT4, muSun, 0, V78);
 
     vector VinfE7 = vinf(V78[0], vEarth);
 
-    vEarth.x = Ve * cos(thetaE);
-    vEarth.y = Ve * sin(thetaE);
-    vEarth.z = Ve * 0;
+    vEarth.x = Ve * cos(thetaE); vEarth.y = Ve * sin(thetaE); vEarth.z = Ve * 0;
 
     vector VinfE8 = vinf(V78[1], vEarth);
 

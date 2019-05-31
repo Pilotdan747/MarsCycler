@@ -29,20 +29,20 @@ int main() {
 
     //Set Up & Initial Conditions
     int dim1, dim2, dim3, dim4; //Number of points in each dimension
-    dim1 = 360;
-    dim2 = 370/5;
-    dim3 = 12*30/5;
-    dim4 = 370/5;
+    dim1 = 72;
+    dim2 = 20;
+    dim3 = 20;
+    dim4 = 20;
 
     //Inital phase angle
-    phi = 30*pi/180; //0 to 2*pi or 0 to 360
+    //Phi from 0 to 2*pi or 0 to 360
 
     //Travel time for each leg
-    dT1 = 150*24*3600; //70 to 400
-    dT2 = 28*30*24*3600; //23 to 35
-    dT3 = 100*24*3600; //70 to 400
-    dT4 = SynodicT*2 - (dT1 + dT2 + dT3); //Check to see if this is negative
-    dT = dT1 + dT2 + dT3 + dT4;
+    //dT1 70 to 400
+    //dT2 23 to 35
+    //dT3 70 to 400
+    //dT4 Check to see if this is negative
+    //dT = dT1 + dT2 + dT3 + dT4;
 
     //Set up clock for timing
     using namespace std::chrono;
@@ -50,20 +50,6 @@ int main() {
 
     //Main array that stores delta V values
     double *dV = (double *) malloc(dim1*dim2*dim3*dim4*sizeof(double));
-
-    //Testing code
-    for (int i = 0; i < dim1*dim2*dim3*dim4; i++) {
-        dV[i] = rand()*1000;
-    }
-
-    //Testing code
-    if (dV == NULL) {
-        printf("NULL");
-    }
-
-    //Testing code
-    long test3 = dim1*dim2*dim3*dim4*sizeof(double)/800000;
-    printf("Size is: %lu mb\n", test3);
 
 
 //Main loop region
@@ -78,28 +64,28 @@ int main() {
         }
 #pragma omp for
         for (int i = 0; i < dim1; i++) {
-            int count = 0;
             for (int j = 0; j < dim2; j++) {
                 for (int k = 0; k < dim3; k++) {
                     for (int l = 0; l < dim4; l++) {
                         //Set dT1-3 and phi for each iteration
-                        dT1 = (150 + j * 10) * 24 * 3600;
+                        dT1 = (70+ j * 16.5) * 24 * 3600;
                         dT2 = (23 + k) * 30 * 24 * 3600;
-                        dT3 = (100 + l * 10) * 24 * 3600;
-                        phi = (20 + i * 5) * pi / 180;
+                        dT3 = (70 + l * 16.5) * 24 * 3600;
+                        phi = (0 + i * 1) * pi / 180;
 
-                        //Calc delta V
-                        double ans = cycle(dT1, dT2, dT3, phi);
+                        dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
 
-                        //Testing code
-                        /*bool test = isnan(ans);
-                        if (isnan(ans)) {
-                            printf("dV is: %f Bool showed: %d\n", ans, test);
-                        }*/
+                        double ans;
+
+                        if (dT4 < 0) {
+                            ans = 1000;
+                        } else {
+                            //Calc delta V
+                            ans = cycle(dT1, dT2, dT3, phi);
+                        }
 
                         //Store answer
-                        dV[count + i*dim2*dim3*dim4] = ans; //Needs work on indexing
-                        count++;
+                        dV[i*dim2*dim3*dim4 + j*dim3*dim4 + k*dim4 + l] = ans; //Needs work on indexing
                     }
                 }
             }
@@ -110,7 +96,7 @@ int main() {
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     double time = duration.count();
-    printf("It took %f seconds to run\n", time/100000);
+    printf("It took %f seconds to run\n", time/1e6);
 
     //Outputs main array to a CSV file
     //Puts size of each dimentsion in its own line
@@ -122,11 +108,25 @@ int main() {
     fprintf(outfile, "%d\n", dim3);
     fprintf(outfile, "%d\n", dim4);
 
-    for (int i = 0; i < 1; i++) {
-        for (int j = 0; j < 1; j++) {
-            for (int k = 0; k < 1; k++) {
-                for (int l = 0; l < 1; l++) {
-                    //fprintf(outfile, "%f, ", dV[i][j][k][l]);
+    long count = 0;
+    for (int i = 0; i < dim1; i++) {
+        for (int j = 0; j < dim2; j++) {
+            for (int k = 0; k < dim3; k++) {
+                for (int l = 0; l < dim4; l++) {
+                    fprintf(outfile, "%f, ", dV[count]);
+                    count++;
+
+                    if (count == 24000) {
+                        printf("Var @ 2400 is: %f\n", dV[count]);
+                    }
+
+                    if (count == 24001) {
+                        printf("Var @ 2401 is: %f\n", dV[count]);
+                    }
+
+                    if (count == 24002) {
+                        printf("Var @ 2402 is: %f\n", dV[count]);
+                    }
                 }
             }
         }
