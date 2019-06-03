@@ -44,6 +44,10 @@ int main() {
     //dT4 Check to see if this is negative
     //dT = dT1 + dT2 + dT3 + dT4;
 
+    double expectedT = 0.006353*dim1*dim2*dim3*dim4/8;
+
+    printf("This should take: %f\n", expectedT);
+
     //Set up clock for timing
     using namespace std::chrono;
     auto start = high_resolution_clock::now();
@@ -55,6 +59,10 @@ int main() {
 //Main loop region
 //Tests all of phi and delta T 1-3 times
 //Stores results in the delta V array
+
+double var = cycle(70*24*3600, (23 + 3)*30*24*3600, (70+11*16.5)*24*3600, 0*pi/180);
+printf("%f\n", var);
+
 #pragma omp parallel
     {
         //Testing code
@@ -84,8 +92,15 @@ int main() {
                             ans = cycle(dT1, dT2, dT3, phi);
                         }
 
+                        if (isnan(ans)) {
+                            printf("NAN\n");
+                        }
+
+
+                        int index = i*dim2*dim3*dim4 + j*dim3*dim4 + k*dim4 + l;
+
                         //Store answer
-                        dV[i*dim2*dim3*dim4 + j*dim3*dim4 + k*dim4 + l] = ans; //Needs work on indexing
+                        dV[index] = ans; //Needs work on indexing
                     }
                 }
             }

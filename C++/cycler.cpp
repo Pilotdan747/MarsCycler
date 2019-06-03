@@ -3,6 +3,8 @@
 //
 
 #include "cycler.h"
+#include <chrono>
+#include <stdio.h>
 
 
 double cycle(double dT1, double dT2, double dT3, double phi) {
@@ -29,6 +31,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
 
     thetaE = 0;
     thetaM = phi;
+
 
 // Earth to Mars
     //Position Vectors

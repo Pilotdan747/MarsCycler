@@ -48,6 +48,10 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
 
     for (int i = 0; i < 100; i++) {
         z = battin_xi(x);
+        if (isnan(z)) {
+            int a = 1;
+        }
+
         den = (1 + 2 * x + l) * (4 * x + z * (3 + x));
         h1 = pow((l + x), 2) * (1 + 3 * x + z) / den;
         h2 = m * (x - l + z) / den;
