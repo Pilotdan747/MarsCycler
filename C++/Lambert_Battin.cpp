@@ -10,6 +10,7 @@ double eps = 10-15;
 
 void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vector V[2]) {
     double r1, r2, kk, theta, c, s, L, T, r0p, l, m, Tp, x0, x, a;
+    bool flag = 0;
 
 
     r1 = norm(R1);
@@ -19,8 +20,10 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
 
     theta = acos(dot(R1, R2)/r1/r2);
 
-    if ((dir == 0 && kk < 0) || (dir > 0 && kk >= 0))
-        theta = 2*pi - theta;
+    if ((dir == 0 && kk < 0) || (dir > 0 && kk >= 0)) {
+        theta = 2 * pi - theta;
+        flag = 1;
+    }
 
     c = sqrt(pow(r1, 2) + pow(r2, 2) - 2*r1*r2*cos(theta));
     s = 0.5*(r1 + r2 + c);
@@ -29,14 +32,20 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
     if (theta > pi)
         L = -L;
 
-    T = sqrt(8*mu/pow(s, 3))*dT;
+    //T = sqrt(8*mu/pow(s, 3))*dT;
 
     r0p = 0.25*s*pow((1+L), 2);
     l = pow(((1-L)/(1+L)),2);
-    m = pow(T, 2)/pow((1+L), 6);
+    //m = pow(T, 2)/pow((1+L), 6);
+    m = mu*pow(dT, 2)/(8*pow(r0p, 3));
 
-    Tp = 4.0/3.0*pow((1-L), 3);
-    if (T <= Tp)
+    //Tp = 4.0/3.0*pow((1-L), 3);
+    if (flag)
+        Tp = sqrt(2)*pow(s, 3.0/2.0)/(3*sqrt(mu))*(1 - pow((s - c)/s, 3.0/2.0));
+    else
+        Tp = sqrt(2)*pow(s, 3.0/2.0)/(3*sqrt(mu))*(1 + pow((s - c)/s, 3.0/2.0));
+
+    if (dT <= Tp)
         x0 = 0;
     else
         x0 = l;
