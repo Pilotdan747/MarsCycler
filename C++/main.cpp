@@ -11,7 +11,7 @@
 
 
 int main() {
-    double dT1, dT2, dT3, dT4, dT, SynodicT, phi, re, rm, muSun, Te, Tm;
+    double SynodicT, re, rm, muSun, Te, Tm;
 
     //Radii of Earth and Mars from sun
     re = 1.495979e8;
@@ -29,10 +29,10 @@ int main() {
 
     //Set Up & Initial Conditions
     int dim1, dim2, dim3, dim4; //Number of points in each dimension
-    dim1 = 72;
-    dim2 = 20;
-    dim3 = 20;
-    dim4 = 20;
+    dim1 = 100;
+    dim2 = 100;
+    dim3 = 100;
+    dim4 = 100;
 
     //Inital phase angle
     //Phi from 0 to 2*pi or 0 to 360
@@ -44,10 +44,6 @@ int main() {
     //dT4 Check to see if this is negative
     //dT = dT1 + dT2 + dT3 + dT4;
 
-    double expectedT = 0.006353*dim1*dim2*dim3*dim4/8;
-
-    printf("This should take: %f\n", expectedT);
-
     //Set up clock for timing
     using namespace std::chrono;
     auto start = high_resolution_clock::now();
@@ -55,13 +51,20 @@ int main() {
     //Main array that stores delta V values
     double *dV = (double *) malloc(dim1*dim2*dim3*dim4*sizeof(double));
 
+    double ***test = (double ***) malloc(sizeof(double**));
+
+    for (int i = 0; i < 10; i++) {
+            test[i] = (double **) malloc(10 * sizeof(double*));
+        for (int j = 0; j < 10; j++) {
+            test[i][j] = (double *) malloc(10 * sizeof(double));
+        }
+    }
+
+    test[1][2][3] = 7;
 
 //Main loop region
 //Tests all of phi and delta T 1-3 times
 //Stores results in the delta V array
-
-double var = cycle(70*24*3600, (23 + 3)*30*24*3600, (70+11*16.5)*24*3600, 0*pi/180);
-printf("%f\n", var);
 
 #pragma omp parallel
     {
@@ -76,12 +79,12 @@ printf("%f\n", var);
                 for (int k = 0; k < dim3; k++) {
                     for (int l = 0; l < dim4; l++) {
                         //Set dT1-3 and phi for each iteration
-                        dT1 = (70+ j * 16.5) * 24 * 3600;
-                        dT2 = (23 + k) * 30 * 24 * 3600;
-                        dT3 = (70 + l * 16.5) * 24 * 3600;
-                        phi = (0 + i * 1) * pi / 180;
+                        double dT1 = (70+ j * 2) * 24 * 3600; //16.5
+                        double dT2 = (23 + k/10) * 30 * 24 * 3600;
+                        double dT3 = (70 + l * 2) * 24 * 3600; //16.5
+                        double phi = (0 + i * 1) * pi / 180;
 
-                        dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
+                        double dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
 
                         double ans;
 
@@ -130,18 +133,6 @@ printf("%f\n", var);
                 for (int l = 0; l < dim4; l++) {
                     fprintf(outfile, "%f, ", dV[count]);
                     count++;
-
-                    if (count == 24000) {
-                        printf("Var @ 2400 is: %f\n", dV[count]);
-                    }
-
-                    if (count == 24001) {
-                        printf("Var @ 2401 is: %f\n", dV[count]);
-                    }
-
-                    if (count == 24002) {
-                        printf("Var @ 2402 is: %f\n", dV[count]);
-                    }
                 }
             }
         }

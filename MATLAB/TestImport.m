@@ -23,7 +23,7 @@ for i=1:dim1
                     a = 8;
                 end
                 
-                dV(i, j, k, l) = ans;
+                dV(i, j, k, l) = ans;https://youtu.be/JeB3JnKp8To
                 count = count+1;
             end
         end
@@ -37,6 +37,11 @@ for i=1:dim1
         for k=1:dim3
             for l=1:dim4
                 test = dV(i, j, k, l);
+                
+                if (test < mindV)
+                    DISP('smaller');
+                end
+                
                 if (test == mindV)
                     cords = [i, j, k, l];
                     break
@@ -46,3 +51,11 @@ for i=1:dim1
     end
 end
 
+
+
+angle = 0:99;
+dT1 = 70:2:268;
+
+[X,Y] = meshgrid(angle, dT1);
+
+contourf(X,Y,dV(:,:,80,30));
