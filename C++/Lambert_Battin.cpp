@@ -9,6 +9,8 @@
 //double eps = 10-15;
 double eps = 10e-15;
 
+using std::abs;
+
 void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vector V[2]) {
     double r1, r2, kk, theta, c, s, L, T, r0p, l, m, Tp, x0, x, a;
     bool flag = 0;
