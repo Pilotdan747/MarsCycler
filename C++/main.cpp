@@ -72,6 +72,7 @@ int main() {
         int threadID = omp_get_thread_num();
         if (threadID == 0) {
             printf("Num threads is: %d\n", omp_get_num_threads());
+            printf("Num procs is: %d\n", omp_get_num_procs());
         }
 #pragma omp for
         for (int i = 0; i < dim1; i++) {
@@ -79,10 +80,10 @@ int main() {
                 for (int k = 0; k < dim3; k++) {
                     for (int l = 0; l < dim4; l++) {
                         //Set dT1-3 and phi for each iteration
-                        double dT1 = (70+ j * 2) * 24 * 3600; //16.5
-                        double dT2 = (23 + k/10) * 30 * 24 * 3600;
-                        double dT3 = (70 + l * 2) * 24 * 3600; //16.5
-                        double phi = (0 + i * 1) * pi / 180;
+                        double dT1 = (70+ j * 3.3) * 24 * 3600; //16.5
+                        double dT2 = (23 + k*0.12) * 30 * 24 * 3600;
+                        double dT3 = (70 + l * 3.3) * 24 * 3600; //16.5
+                        double phi = (0 + i * 3.6) * pi / 180;
 
                         double dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
 

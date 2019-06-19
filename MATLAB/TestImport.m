@@ -23,7 +23,7 @@ for i=1:dim1
                     a = 8;
                 end
                 
-                dV(i, j, k, l) = ans;https://youtu.be/JeB3JnKp8To
+                dV(i, j, k, l) = ans;
                 count = count+1;
             end
         end

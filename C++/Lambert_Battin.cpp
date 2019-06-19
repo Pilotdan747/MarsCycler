@@ -70,11 +70,6 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
             break;
         else
             x0 = x;
-
-        double a;
-        if (i > 10) {
-            a = abs(x - x0);
-        }
     }
 
     a = mu*pow(dT, 2)/16.0/pow(r0p, 2)/x/pow(y, 2);

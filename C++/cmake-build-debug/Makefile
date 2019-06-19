@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named MarsCyler
+# Target rules for targets named MarsCycler
 
 # Build rule for target.
-MarsCyler: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 MarsCyler
-.PHONY : MarsCyler
+MarsCycler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 MarsCycler
+.PHONY : MarsCycler
 
 # fast build rule for target.
-MarsCyler/fast:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/build
-.PHONY : MarsCyler/fast
+MarsCycler/fast:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/build
+.PHONY : MarsCycler/fast
 
 Lambert_Battin.o: Lambert_Battin.cpp.o
 
@@ -129,7 +129,7 @@ Lambert_Battin.o: Lambert_Battin.cpp.o
 
 # target to build an object file
 Lambert_Battin.cpp.o:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/Lambert_Battin.cpp.o
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/Lambert_Battin.cpp.o
 .PHONY : Lambert_Battin.cpp.o
 
 Lambert_Battin.i: Lambert_Battin.cpp.i
@@ -138,7 +138,7 @@ Lambert_Battin.i: Lambert_Battin.cpp.i
 
 # target to preprocess a source file
 Lambert_Battin.cpp.i:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/Lambert_Battin.cpp.i
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/Lambert_Battin.cpp.i
 .PHONY : Lambert_Battin.cpp.i
 
 Lambert_Battin.s: Lambert_Battin.cpp.s
@@ -147,7 +147,7 @@ Lambert_Battin.s: Lambert_Battin.cpp.s
 
 # target to generate assembly for a file
 Lambert_Battin.cpp.s:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/Lambert_Battin.cpp.s
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/Lambert_Battin.cpp.s
 .PHONY : Lambert_Battin.cpp.s
 
 cycler.o: cycler.cpp.o
@@ -156,7 +156,7 @@ cycler.o: cycler.cpp.o
 
 # target to build an object file
 cycler.cpp.o:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/cycler.cpp.o
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/cycler.cpp.o
 .PHONY : cycler.cpp.o
 
 cycler.i: cycler.cpp.i
@@ -165,7 +165,7 @@ cycler.i: cycler.cpp.i
 
 # target to preprocess a source file
 cycler.cpp.i:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/cycler.cpp.i
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/cycler.cpp.i
 .PHONY : cycler.cpp.i
 
 cycler.s: cycler.cpp.s
@@ -174,7 +174,7 @@ cycler.s: cycler.cpp.s
 
 # target to generate assembly for a file
 cycler.cpp.s:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/cycler.cpp.s
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/cycler.cpp.s
 .PHONY : cycler.cpp.s
 
 helperFuncs.o: helperFuncs.cpp.o
@@ -183,7 +183,7 @@ helperFuncs.o: helperFuncs.cpp.o
 
 # target to build an object file
 helperFuncs.cpp.o:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/helperFuncs.cpp.o
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/helperFuncs.cpp.o
 .PHONY : helperFuncs.cpp.o
 
 helperFuncs.i: helperFuncs.cpp.i
@@ -192,7 +192,7 @@ helperFuncs.i: helperFuncs.cpp.i
 
 # target to preprocess a source file
 helperFuncs.cpp.i:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/helperFuncs.cpp.i
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/helperFuncs.cpp.i
 .PHONY : helperFuncs.cpp.i
 
 helperFuncs.s: helperFuncs.cpp.s
@@ -201,7 +201,7 @@ helperFuncs.s: helperFuncs.cpp.s
 
 # target to generate assembly for a file
 helperFuncs.cpp.s:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/helperFuncs.cpp.s
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/helperFuncs.cpp.s
 .PHONY : helperFuncs.cpp.s
 
 main.o: main.cpp.o
@@ -210,7 +210,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -219,7 +219,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -228,7 +228,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -239,7 +239,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... MarsCyler"
+	@echo "... MarsCycler"
 	@echo "... Lambert_Battin.o"
 	@echo "... Lambert_Battin.i"
 	@echo "... Lambert_Battin.s"

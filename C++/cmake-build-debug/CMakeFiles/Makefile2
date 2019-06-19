@@ -65,39 +65,39 @@ CMAKE_SOURCE_DIR = "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsC
 CMAKE_BINARY_DIR = "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug"
 
 #=============================================================================
-# Target rules for target CMakeFiles/MarsCyler.dir
+# Target rules for target CMakeFiles/MarsCycler.dir
 
 # All Build rule for target.
-CMakeFiles/MarsCyler.dir/all:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/depend
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5 "Built target MarsCyler"
-.PHONY : CMakeFiles/MarsCyler.dir/all
+CMakeFiles/MarsCycler.dir/all:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/depend
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5 "Built target MarsCycler"
+.PHONY : CMakeFiles/MarsCycler.dir/all
 
 # Include target in all.
-all: CMakeFiles/MarsCyler.dir/all
+all: CMakeFiles/MarsCycler.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/MarsCyler.dir/rule: cmake_check_build_system
+CMakeFiles/MarsCycler.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/CMakeFiles" 5
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/MarsCyler.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/MarsCycler.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cmake-build-debug/CMakeFiles" 0
-.PHONY : CMakeFiles/MarsCyler.dir/rule
+.PHONY : CMakeFiles/MarsCycler.dir/rule
 
 # Convenience name for target.
-MarsCyler: CMakeFiles/MarsCyler.dir/rule
+MarsCycler: CMakeFiles/MarsCycler.dir/rule
 
-.PHONY : MarsCyler
-
-# clean rule for target.
-CMakeFiles/MarsCyler.dir/clean:
-	$(MAKE) -f CMakeFiles/MarsCyler.dir/build.make CMakeFiles/MarsCyler.dir/clean
-.PHONY : CMakeFiles/MarsCyler.dir/clean
+.PHONY : MarsCycler
 
 # clean rule for target.
-clean: CMakeFiles/MarsCyler.dir/clean
+CMakeFiles/MarsCycler.dir/clean:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/clean
+.PHONY : CMakeFiles/MarsCycler.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/MarsCycler.dir/clean
 
 .PHONY : clean
 
