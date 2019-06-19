@@ -51,16 +51,19 @@ int main() {
     //Main array that stores delta V values
     double *dV = (double *) malloc(dim1*dim2*dim3*dim4*sizeof(double));
 
-    double ***test = (double ***) malloc(sizeof(double**));
+    double ****test = (double ****) malloc(sizeof(double***));
 
     for (int i = 0; i < 10; i++) {
-            test[i] = (double **) malloc(10 * sizeof(double*));
+            test[i] = (double ***) malloc(10 * sizeof(double**));
         for (int j = 0; j < 10; j++) {
-            test[i][j] = (double *) malloc(10 * sizeof(double));
+            test[i][j] = (double **) malloc(10 * sizeof(double*));
+            for (int k = 0; k < 10; k++) {
+                test[i][j][k] = (double *) malloc(10 * sizeof(double));
+            }
         }
     }
 
-    test[1][2][3] = 7;
+    test[1][2][3][4] = 7;
 
 //Main loop region
 //Tests all of phi and delta T 1-3 times
@@ -86,9 +89,9 @@ int main() {
                         double phi = (0 + i * 3.6) * pi / 180; */       // 9 -> 8
 
                         double dT1 = (91.4 + j * 0.1) * 24 * 3600;       // 96.4
-                        double dT2 = (24.24 + k * 0.02) * 30 * 24 * 3600;  // 26.24
+                        double dT2 = (25.24 + k * 0.02) * 30 * 24 * 3600;  // 26.24
                         double dT3 = (381.8 + l * 0.1) * 24 * 3600;      // 386.8
-                        double phi = (23.8 + i * 0.05) * pi / 180;        // 28.8
+                        double phi = (23.8 + i * 0.1) * pi / 180;        // 28.8
 
                         double dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
 
