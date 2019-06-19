@@ -49,21 +49,19 @@ int main() {
     auto start = high_resolution_clock::now();
 
     //Main array that stores delta V values
-    double *dV = (double *) malloc(dim1*dim2*dim3*dim4*sizeof(double));
+    //double *dV = (double *) malloc(dim1*dim2*dim3*dim4*sizeof(double));
 
-    double ****test = (double ****) malloc(sizeof(double***));
+    double ****dV = (double ****) malloc(dim1 * sizeof(double***));
 
-    for (int i = 0; i < 10; i++) {
-            test[i] = (double ***) malloc(10 * sizeof(double**));
-        for (int j = 0; j < 10; j++) {
-            test[i][j] = (double **) malloc(10 * sizeof(double*));
-            for (int k = 0; k < 10; k++) {
-                test[i][j][k] = (double *) malloc(10 * sizeof(double));
+    for (int i = 0; i < dim2; i++) {
+            dV[i] = (double ***) malloc(dim2 * sizeof(double**));
+        for (int j = 0; j < dim3; j++) {
+            dV[i][j] = (double **) malloc(dim3 * sizeof(double*));
+            for (int k = 0; k < dim4; k++) {
+                dV[i][j][k] = (double *) malloc(dim4 * sizeof(double));
             }
         }
     }
-
-    test[1][2][3][4] = 7;
 
 //Main loop region
 //Tests all of phi and delta T 1-3 times
@@ -109,16 +107,11 @@ int main() {
                         }
 
 
-                        int index = i*dim2*dim3*dim4 + j*dim3*dim4 + k*dim4 + l;
+                        //int index = i*dim2*dim3*dim4 + j*dim3*dim4 + k*dim4 + l;
 
                         //Store answer
-                        dV[index] = ans; //Needs work on indexing
-
-                        int indexTest = 49*dim2*dim3*dim4 + 49*dim3*dim4 + 49*dim4 + 49;
-
-                        if (index == indexTest) {
-                            printf("Value should be 3.something and it is: %f", ans);
-                        }
+                        //dV[index] = ans; //Needs work on indexing
+                        dV[i][j][k][l] = ans;
                     }
                 }
             }
@@ -146,7 +139,7 @@ int main() {
         for (int j = 0; j < dim2; j++) {
             for (int k = 0; k < dim3; k++) {
                 for (int l = 0; l < dim4; l++) {
-                    fprintf(outfile, "%f, ", dV[count]);
+                    fprintf(outfile, "%f, ", dV[i][j][k][l]);
                     count++;
                 }
             }
