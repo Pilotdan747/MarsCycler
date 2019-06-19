@@ -110,6 +110,12 @@ int main() {
 
                         //Store answer
                         dV[index] = ans; //Needs work on indexing
+
+                        int indexTest = 49*dim2*dim3*dim4 + 49*dim3*dim4 + 49*dim4 + 49;
+
+                        if (index == indexTest) {
+                            printf("Value should be 3.something and it is: %f", ans);
+                        }
                     }
                 }
             }
