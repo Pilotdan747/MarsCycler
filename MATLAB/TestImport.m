@@ -40,7 +40,7 @@ for i=1:dim1
             for l=1:dim4
                 test = dV(i, j, k, l);
                 
-                if (test < 5)
+                if (test < 1)
                     countDV = countDV + 1;
                 end
                 
