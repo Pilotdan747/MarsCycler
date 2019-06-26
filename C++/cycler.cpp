@@ -58,6 +58,8 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     vector VinfE1 = vinf(V12[0], vEarth);
     vector VinfM2 = vinf(V12[1], vMars);
 
+    printf("Vinf Mars1: %f\n", norm(VinfM2));
+
 // Mars to Mars
     dThetaM = 2 * pi * (dT2 / Tm);
     thetaM += dThetaM;
@@ -73,6 +75,8 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
 
     //Vinf Vector leaving
     vector VinfM3 = vinf(V34[0], vMars);
+
+    printf("Vinf Mars2: %f\n", norm(VinfM3));
 
     vMars.x = Vm * cos(thetaM); vMars.y = Vm * sin(thetaM); vMars.z = Vm * 0;
 

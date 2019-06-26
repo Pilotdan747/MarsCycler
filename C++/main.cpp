@@ -26,7 +26,6 @@ int main() {
     //Synodic Period
     SynodicT = 1/(fabs(1/Te - 1/Tm));
 
-
     //Set Up & Initial Conditions
     int dim1, dim2, dim3, dim4; //Number of points in each dimension
     dim1 = 100;
@@ -49,7 +48,6 @@ int main() {
     auto start = high_resolution_clock::now();
 
     //Main array that stores delta V values
-    //double *dV = (double *) malloc(dim1*dim2*dim3*dim4*sizeof(double));
 
     double ****dV = (double ****) malloc(dim1 * sizeof(double***));
 
@@ -81,15 +79,16 @@ int main() {
                 for (int k = 0; k < dim3; k++) {
                     for (int l = 0; l < dim4; l++) {
                         //Set dT1-3 and phi for each iteration
-                        /*double dT1 = (70 + j * 3.3) * 24 * 3600;      // 9 -> 8
-                        double dT2 = (23 + k * 0.12) * 30 * 24 * 3600; // 28 -> 27
-                        double dT3 = (70 + l * 3.3) * 24 * 3600;     // 97 -> 96
-                        double phi = (0 + i * 3.6) * pi / 180; */       // 9 -> 8
+                        /*double phi = (0 + i * 3.6) * pi / 180;        // 9 -> 8
+                        double dT1 = (70 + j * 3.3) * 24 * 3600;        // 28 -> 27
+                        double dT2 = (23 + k * 0.12) * 30 * 24 * 3600;  // 97 -> 96
+                        double dT3 = (70 + l * 3.3) * 24 * 3600;    */  // 9 -> 8
 
-                        double dT1 = (91.4 + j * 0.1) * 24 * 3600;       // 96.4
-                        double dT2 = (25.24 + k * 0.02) * 30 * 24 * 3600;  // 26.24
-                        double dT3 = (381.8 + l * 0.1) * 24 * 3600;      // 386.8
-                        double phi = (23.8 + i * 0.1) * pi / 180;        // 28.8
+
+                        double phi = (23.8 + i * 0.1) * pi / 180;          // 28.8
+                        double dT1 = (154.1 + j * 0.1) * 24 * 3600;         // 96.4   159.1
+                        double dT2 = (33.52 + k * 0.02) * 30 * 24 * 3600;  // 26.24  34.52
+                        double dT3 = (91.4 + l * 0.1) * 24 * 3600;        // 386.8  96.4
 
                         double dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
 
@@ -106,11 +105,7 @@ int main() {
                             printf("NAN\n");
                         }
 
-
-                        //int index = i*dim2*dim3*dim4 + j*dim3*dim4 + k*dim4 + l;
-
                         //Store answer
-                        //dV[index] = ans; //Needs work on indexing
                         dV[i][j][k][l] = ans;
                     }
                 }
@@ -134,13 +129,11 @@ int main() {
     fprintf(outfile, "%d\n", dim3);
     fprintf(outfile, "%d\n", dim4);
 
-    long count = 0;
     for (int i = 0; i < dim1; i++) {
         for (int j = 0; j < dim2; j++) {
             for (int k = 0; k < dim3; k++) {
                 for (int l = 0; l < dim4; l++) {
                     fprintf(outfile, "%f, ", dV[i][j][k][l]);
-                    count++;
                 }
             }
         }

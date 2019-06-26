@@ -150,6 +150,33 @@ Lambert_Battin.cpp.s:
 	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/Lambert_Battin.cpp.s
 .PHONY : Lambert_Battin.cpp.s
 
+Lambert_Battin_Multi.o: Lambert_Battin_Multi.cpp.o
+
+.PHONY : Lambert_Battin_Multi.o
+
+# target to build an object file
+Lambert_Battin_Multi.cpp.o:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/Lambert_Battin_Multi.cpp.o
+.PHONY : Lambert_Battin_Multi.cpp.o
+
+Lambert_Battin_Multi.i: Lambert_Battin_Multi.cpp.i
+
+.PHONY : Lambert_Battin_Multi.i
+
+# target to preprocess a source file
+Lambert_Battin_Multi.cpp.i:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/Lambert_Battin_Multi.cpp.i
+.PHONY : Lambert_Battin_Multi.cpp.i
+
+Lambert_Battin_Multi.s: Lambert_Battin_Multi.cpp.s
+
+.PHONY : Lambert_Battin_Multi.s
+
+# target to generate assembly for a file
+Lambert_Battin_Multi.cpp.s:
+	$(MAKE) -f CMakeFiles/MarsCycler.dir/build.make CMakeFiles/MarsCycler.dir/Lambert_Battin_Multi.cpp.s
+.PHONY : Lambert_Battin_Multi.cpp.s
+
 cycler.o: cycler.cpp.o
 
 .PHONY : cycler.o
@@ -243,6 +270,9 @@ help:
 	@echo "... Lambert_Battin.o"
 	@echo "... Lambert_Battin.i"
 	@echo "... Lambert_Battin.s"
+	@echo "... Lambert_Battin_Multi.o"
+	@echo "... Lambert_Battin_Multi.i"
+	@echo "... Lambert_Battin_Multi.s"
 	@echo "... cycler.o"
 	@echo "... cycler.i"
 	@echo "... cycler.s"

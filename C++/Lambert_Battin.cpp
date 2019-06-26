@@ -29,20 +29,22 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
     }
 
     c = sqrt(pow(r1, 2) + pow(r2, 2) - 2*r1*r2*cos(theta));
-    s = 0.5*(r1 + r2 + c);
+    s = 0.5*(r1 + r2 + c);                              // Page 304
 
-    L = sqrt((s-c)/s);
+    L = sqrt((s-c)/s);                                  // 7.122
     if (theta > pi)
         L = -L;
 
     //T = sqrt(8*mu/pow(s, 3))*dT;
 
-    r0p = 0.25*s*pow((1+L), 2);
-    l = pow(((1-L)/(1+L)),2);
+    r0p = 0.25*s*pow((1+L), 2);                          // 6.77 -> worked out proof
+    l = pow(((1-L)/(1+L)),2);                            // 7.89
+
     //m = pow(T, 2)/pow((1+L), 6);
-    m = mu*pow(dT, 2)/(8*pow(r0p, 3));
+    m = mu*pow(dT, 2)/(8*pow(r0p, 3));                   // 7.89
 
     //Tp = 4.0/3.0*pow((1-L), 3);
+    // Page 340 in Battin
     if (flag)
         Tp = sqrt(2)*pow(s, 3.0/2.0)/(3*sqrt(mu))*(1 - pow((s - c)/s, 3.0/2.0));
     else
@@ -59,15 +61,20 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
     double z, den, h1, h2, B, u, K, y;
 
     for (int i = 0; i < 100; i++) {
-        z = battin_xi(x);
-        den = (1 + 2 * x + l) * (4 * x + z * (3 + x));
-        h1 = pow((l + x), 2) * (1 + 3 * x + z) / den;
-        h2 = m * (x - l + z) / den;
-        B = 0.25 * 27 * h2 / pow((1 + h1), 3);
-        u = 0.5 * B / (1 + sqrt(1 + B));
-        K = battin_K(u); //Check this
-        y = (1 + h1) / 3 * (2 + sqrt(1 + B) / (1 + 2 * u * pow(K, 2)));
-        x = sqrt(0.25 * pow((1 - l), 2) + m / pow(y, 2)) - 0.5 * (1 + l);
+        z = battin_xi(x);                              // 7.121
+
+        den = (1 + 2 * x + l) * (4 * x + z * (3 + x)); // 7.111 & 7.112
+        h1 = pow((l + x), 2) * (1 + 3 * x + z) / den;  // 7.111
+        h2 = m * (x - l + z) / den;                    // 7.112
+
+        B = 0.25 * 27 * h2 / pow((1 + h1), 3);         // 7.123
+        u = 0.5 * B / (1 + sqrt(1 + B));               // 7.123
+
+        K = battin_K(u); //Check this                  // 7.125
+        y = (1 + h1) / 3 * (2 + sqrt(1 + B) / (1 + 2 * u * pow(K, 2)));  // 7.124
+
+        x = sqrt(0.25 * pow((1 - l), 2) + m / pow(y, 2)) - 0.5 * (1 + l); // 7.113
+
         if (abs(x - x0) < eps)
             break;
         else
