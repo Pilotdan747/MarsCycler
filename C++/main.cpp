@@ -104,7 +104,7 @@ int main() {
                             ans = 1000;
                         } else {
                             //Calc delta V
-                            ans = cycle(dT1, dT2, dT3, phi);
+                            ans = cycleMulti(dT1, dT2, dT3, phi);
                         }
 
                         if (isnan(ans)) {
