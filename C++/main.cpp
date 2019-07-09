@@ -79,11 +79,11 @@ int main() {
                 for (int k = 0; k < dim3; k++) {
                     for (int l = 0; l < dim4; l++) {
                         //Set dT1-3 and phi for each iteration
-                        /*double phi = (0 + i * 3.6) * pi / 180;        // 9 -> 8
+                        double phi = (0 + i * 3.6) * pi / 180;        // 9 -> 8
                         double dT1 = (70 + j * 3.3) * 24 * 3600;        // 28 -> 27
                         double dT2 = (23 + k * 0.12) * 30 * 24 * 3600;  // 97 -> 96
                         double dT3 = (70 + l * 3.3) * 24 * 3600;      // 9 -> 8
-                        */
+
 
                         /* double phi = (23.8 + i * 0.1) * pi / 180;          // 28.8
                         double dT1 = (154.1 + j * 0.1) * 24 * 3600;        // 159.1
@@ -91,11 +91,11 @@ int main() {
                         double dT3 = (91.4 + l * 0.1) * 24 * 3600;         // 96.4
                         */
 
-                        double phi = (29.9 + i * 0.01) * pi / 180;          // 66 30.4
+                        /*double phi = (29.9 + i * 0.01) * pi / 180;          // 66 30.4
                         double dT1 = (161.5 + j * 0.01) * 24 * 3600;        // 79 162
                         double dT2 = (34.21 + k * 0.005) * 30 * 24 * 3600;  // 47 34.46
                         double dT3 = (96.4 + l * 0.01) * 24 * 3600;         // 55 96.9
-
+                        */
                         double dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
 
                         double ans;

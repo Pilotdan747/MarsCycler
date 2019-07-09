@@ -4,6 +4,7 @@
 
 #include "helperFuncs.h"
 #include <cmath>
+#include <stdio.h>
 
 #ifndef C___LAMBERT_BATTIN_H
 #define C___LAMBERT_BATTIN_H
