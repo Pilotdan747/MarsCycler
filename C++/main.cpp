@@ -28,10 +28,10 @@ int main() {
 
     //Set Up & Initial Conditions
     int dim1, dim2, dim3, dim4; //Number of points in each dimension
-    dim1 = 100;
-    dim2 = 100;
-    dim3 = 100;
-    dim4 = 100;
+    dim1 = 1;
+    dim2 = 1;
+    dim3 = 1;
+    dim4 = 1;
 
     //Inital phase angle
     //Phi from 0 to 2*pi or 0 to 360
@@ -107,7 +107,7 @@ int main() {
                             ans = cycleMulti(dT1, dT2, dT3, phi);
                         }
 
-                        if (isnan(ans)) {
+                        if (isnan(ans )) {
                             printf("NAN\n");
                         }
 
