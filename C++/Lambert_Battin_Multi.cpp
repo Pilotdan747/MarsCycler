@@ -41,10 +41,10 @@ void lambert_battin_multi(vector R1, vector R2, double dT, double mu, double dir
     l = pow(tan(v/2), 2);
 
     xR = revSucSub(N, m, l);
-    xL = sucSub(N, m, l);
+    xL = sucSub(N, m, l, 2*xR);
 
-    printf("xR is: %f\n", xR);
-    printf("xL is: %f\n", xL);
+    //printf("xR is: %f\n", xR);
+    //printf("xL is: %f\n", xL);
 
     double EL = 2*atan(sqrt(xL));
     double ER = 2*atan(sqrt(xR));
@@ -86,10 +86,9 @@ void lambert_battin_multi(vector R1, vector R2, double dT, double mu, double dir
 
 
 // Solving for xL
-double sucSub(int N, double m, double l) {
-    double x0, x, y, yold, E, rhs;
+double sucSub(int N, double m, double l, double x0) {
+    double x, y, yold, E, rhs;
 
-    x0 = l;
     x = x0;
     y = 0;
     yold = 1;
@@ -109,7 +108,7 @@ double sucSub(int N, double m, double l) {
     return x;
 }
 
-// Solving for aR
+// Solving for xR
 double revSucSub(int N, double m, double l) {
     double x0, x, y1, y1old, y2, q, E0, h, hpri, Enew, E;
 
@@ -123,11 +122,16 @@ double revSucSub(int N, double m, double l) {
         y1 = sqrt(m / ((l + x) * (1 + x)));
         y2 = y1;
 
-        E0 = pi;
+        if (y1 < 1) {
+            x = sucSub(N, m, l, x)/2;
+            continue;
+        }
+
+        E0 = pi;                                                    //Guess
         q = 4 / m * pow(y2, 3) - pow(y2, 2);
         h = (N * pi + E0 - sin(E0)) / pow(tan(E0 / 2), 3) - q;
 
-        if (h < 0) {
+        if (h < 0) {                                               //Make E0 so that h(E0) > 0
             while (h < 0) {
                 E0 = E0 / 2;
                 h = (N * pi + E0 - sin(E0)) / pow(tan(E0 / 2), 3) - q;

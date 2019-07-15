@@ -12,7 +12,7 @@
 void lambert_battin_multi(vector R1, vector R2, double dT, double mu, double dir, int N, vector V[2]);
 
 double revSucSub(int N, double m, double l);
-double sucSub(int N, double m, double l);
+double sucSub(int N, double m, double l, double x0);
 double ySolve(double c);
 
 #endif //C___LAMBERT_BATTIN_MULTI_H

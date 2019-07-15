@@ -229,7 +229,8 @@ double cycleMulti(double dT1, double dT2, double dT3, double phi) {
 
     //Trajectory Solver
     vector V78[2];
-    lambert_battin_multi(Re4, Re5, dT4, muSun, 0, 1, V78);
+    //lambert_battin_multi(Re4, Re5, dT4, muSun, 0, 1, V78);
+    lambert_battin(Re4, Re5, dT4, muSun, 0, V78);
 
     vector VinfE7 = vinf(V78[0], vEarth);
 
