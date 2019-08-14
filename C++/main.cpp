@@ -28,10 +28,10 @@ int main() {
 
     //Set Up & Initial Conditions
     int dim1, dim2, dim3, dim4; //Number of points in each dimension
-    dim1 = 1;
-    dim2 = 1;
-    dim3 = 1;
-    dim4 = 1;
+    dim1 = 10;
+    dim2 = 10;
+    dim3 = 10;
+    dim4 = 10;
 
     //Inital phase angle
     //Phi from 0 to 2*pi or 0 to 360
@@ -52,7 +52,7 @@ int main() {
     double ****dV = (double ****) malloc(dim1 * sizeof(double***));
 
     for (int i = 0; i < dim2; i++) {
-            dV[i] = (double ***) malloc(dim2 * sizeof(double**));
+        dV[i] = (double ***) malloc(dim2 * sizeof(double**));
         for (int j = 0; j < dim3; j++) {
             dV[i][j] = (double **) malloc(dim3 * sizeof(double*));
             for (int k = 0; k < dim4; k++) {
@@ -60,6 +60,13 @@ int main() {
             }
         }
     }
+
+    double phi = (0 + 0 * 3.6) * pi / 180;        // 9 -> 8
+    double dT1 = (70 + 0 * 3.3) * 24 * 3600;        // 28 -> 27
+    double dT2 = (23 + 27 * 0.12) * 30 * 24 * 3600;  // 97 -> 96
+    double dT3 = (70 + 0 * 3.3) * 24 * 3600;      // 9 -> 8
+
+    cycleMulti(dT1, dT2, dT3, phi);
 
 //Main loop region
 //Tests all of phi and delta T 1-3 times
@@ -108,7 +115,7 @@ int main() {
                         }
 
                         if (isnan(ans )) {
-                            printf("NAN\n");
+                            //printf("NAN\n");
                         }
 
                         //Store answer

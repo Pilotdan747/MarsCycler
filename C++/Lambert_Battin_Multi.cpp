@@ -117,13 +117,17 @@ double revSucSub(int N, double m, double l) {
     y1 = 0;
     y1old = 1;
 
-    while (abs(y1old - y1) > eps_m) {
+    for (int i = 0; i < 100; i++) {
+        if (abs(y1old - y1) < eps_m) {
+            break;
+        }
+
         y1old = y1;
         y1 = sqrt(m / ((l + x) * (1 + x)));
         y2 = y1;
 
         if (y1 < 1) {
-            x = sucSub(N, m, l, x)/2;
+            x = sucSub(N, m, l, x0)/2;
             continue;
         }
 
@@ -141,7 +145,10 @@ double revSucSub(int N, double m, double l) {
         Enew = E0;
         E = 0;
 
-        while (abs(Enew - E) > eps_m) {
+        for (int j = 0; j < 100; j ++) {
+            if (abs(Enew - E) < eps_m) {
+                break;
+            }
 
             E = Enew;
             h = (N * pi + E - sin(E)) / pow(tan(E / 2), 3) - q;
