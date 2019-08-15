@@ -40,8 +40,8 @@ void lambert_battin_multi(vector R1, vector R2, double dT, double mu, double dir
     v = acos(sqrt(r1*r2)*cos(theta/2)/n);
     l = pow(tan(v/2), 2);
 
-    xR = revSucSub(N, m, l);
-    xL = sucSub(N, m, l, 2*xR);
+    xR = revSucSub(N, m, l, l);
+    xL = sucSub(N, m, l, l);
 
     //printf("xR is: %f\n", xR);
     //printf("xL is: %f\n", xL);
@@ -102,6 +102,11 @@ double sucSub(int N, double m, double l, double x0) {
 
         y = ySolve(rhs);
 
+        if (y > sqrt(m/l)) {
+            x = revSucSub(N, m, l, x0)*2;
+            continue;
+        }
+
         x = (sqrt((pow(l, 2) - 2*l + 1) * pow(y, 2) + 4*m) - (l + 1)*y)/(2*y);
     }
 
@@ -109,10 +114,9 @@ double sucSub(int N, double m, double l, double x0) {
 }
 
 // Solving for xR
-double revSucSub(int N, double m, double l) {
-    double x0, x, y1, y1old, y2, q, E0, h, hpri, Enew, E;
+double revSucSub(int N, double m, double l, double x0) {
+    double x, y1, y1old, y2, q, E0, h, hpri, Enew, E;
 
-    x0 = l;
     x = x0;
     y1 = 0;
     y1old = 1;

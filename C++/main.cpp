@@ -28,10 +28,10 @@ int main() {
 
     //Set Up & Initial Conditions
     int dim1, dim2, dim3, dim4; //Number of points in each dimension
-    dim1 = 10;
-    dim2 = 10;
-    dim3 = 10;
-    dim4 = 10;
+    dim1 = 100;
+    dim2 = 100;
+    dim3 = 100;
+    dim4 = 100;
 
     //Inital phase angle
     //Phi from 0 to 2*pi or 0 to 360
