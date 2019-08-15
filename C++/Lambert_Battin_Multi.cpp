@@ -93,7 +93,10 @@ double sucSub(int N, double m, double l, double x0) {
     y = 0;
     yold = 1;
 
-    while (abs(yold - y) > eps_m) {
+    for (int i = 0; i < 100; i++) {
+        if (abs(yold - y) > eps_m) {
+            break;
+        }
         E = 2*atan(sqrt(x));
 
         yold = y;
