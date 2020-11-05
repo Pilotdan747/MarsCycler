@@ -5,6 +5,9 @@
 #include <time.h>
 #include <chrono>
 #include <omp.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 
 //Defines pi
 #define pi 4*atan(1)
@@ -83,7 +86,7 @@ int main() {
                         double phi = (0 + i * 36) * pi / 180;
                         double dT1 = (70 + j * 13) * 24 * 3600;
                         double dT2 = (23 + k * 0.7) * 30 * 24 * 3600;
-                        double dT3 = (70 + l * 13) * 24 * 3600;      
+                        double dT3 = (70 + l * 13) * 24 * 3600;
 
 
                         double dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
