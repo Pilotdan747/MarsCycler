@@ -13,6 +13,13 @@
 int main() {
     double SynodicT, re, rm, muSun, Te, Tm;
 
+    //Set Up & Initial Conditions
+    int dim1, dim2, dim3, dim4; //Number of points in each dimension
+    dim1 = 10;
+    dim2 = 10;
+    dim3 = 10;
+    dim4 = 10;
+
     //Radii of Earth and Mars from sun
     re = 1.495979e8;
     rm = 2.279483e8;
@@ -25,13 +32,6 @@ int main() {
 
     //Synodic Period
     SynodicT = 1/(fabs(1/Te - 1/Tm));
-
-    //Set Up & Initial Conditions
-    int dim1, dim2, dim3, dim4; //Number of points in each dimension
-    dim1 = 10;
-    dim2 = 10;
-    dim3 = 10;
-    dim4 = 10;
 
     //Inital phase angle
     //Phi from 0 to 2*pi or 0 to 360
@@ -51,22 +51,16 @@ int main() {
 
     double ****dV = (double ****) malloc(dim1 * sizeof(double***));
 
-    for (int i = 0; i < dim2; i++) {
+    for (int i = 0; i < dim1; i++) {
         dV[i] = (double ***) malloc(dim2 * sizeof(double**));
-        for (int j = 0; j < dim3; j++) {
+        for (int j = 0; j < dim2; j++) {
             dV[i][j] = (double **) malloc(dim3 * sizeof(double*));
-            for (int k = 0; k < dim4; k++) {
+            for (int k = 0; k < dim3; k++) {
                 dV[i][j][k] = (double *) malloc(dim4 * sizeof(double));
             }
         }
     }
 
-    /*double phi = (0 + 0 * 3.6) * pi / 180;        // 9 -> 8
-    double dT1 = (70 + 0 * 3.3) * 24 * 3600;        // 28 -> 27
-    double dT2 = (23 + 27 * 0.12) * 30 * 24 * 3600;  // 97 -> 96
-    double dT3 = (70 + 0 * 3.3) * 24 * 3600;      // 9 -> 8
-    */
-    //cycleMulti(dT1, dT2, dT3, phi);
 
 //Main loop region
 //Tests all of phi and delta T 1-3 times
@@ -86,23 +80,12 @@ int main() {
                 for (int k = 0; k < dim3; k++) {
                     for (int l = 0; l < dim4; l++) {
                         //Set dT1-3 and phi for each iteration
-                        double phi = (0 + i * 3.6) * pi / 180;        // 9 -> 8
-                        double dT1 = (70 + j * 3.3) * 24 * 3600;        // 28 -> 27
-                        double dT2 = (23 + k * 0.12) * 30 * 24 * 3600;  // 97 -> 96
-                        double dT3 = (70 + l * 3.3) * 24 * 3600;      // 9 -> 8
+                        double phi = (0 + i * 36) * pi / 180;
+                        double dT1 = (70 + j * 13) * 24 * 3600;
+                        double dT2 = (23 + k * 0.7) * 30 * 24 * 3600;
+                        double dT3 = (70 + l * 13) * 24 * 3600;      
 
 
-                        /* double phi = (23.8 + i * 0.1) * pi / 180;          // 28.8
-                        double dT1 = (154.1 + j * 0.1) * 24 * 3600;        // 159.1
-                        double dT2 = (33.52 + k * 0.02) * 30 * 24 * 3600;  // 34.52
-                        double dT3 = (91.4 + l * 0.1) * 24 * 3600;         // 96.4
-                        */
-
-                        /*double phi = (29.9 + i * 0.01) * pi / 180;          // 66 30.4
-                        double dT1 = (161.5 + j * 0.01) * 24 * 3600;        // 79 162
-                        double dT2 = (34.21 + k * 0.005) * 30 * 24 * 3600;  // 47 34.46
-                        double dT3 = (96.4 + l * 0.01) * 24 * 3600;         // 55 96.9
-                        */
                         double dT4 = SynodicT*2 - (dT1 + dT2 + dT3);
 
                         double ans;
@@ -117,6 +100,8 @@ int main() {
                         if (isnan(ans )) {
                             //printf("NAN\n");
                         }
+
+                        double test = dV[i][j][k][l];
 
                         //Store answer
                         dV[i][j][k][l] = ans;

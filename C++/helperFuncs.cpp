@@ -4,6 +4,7 @@
 
 #include "helperFuncs.h"
 #include <cmath>
+#include <iostream>
 #include <stdio.h>
 
 #define pi 4*atan(1)
@@ -25,7 +26,7 @@ vector vinf(vector v, vector vPlanet) {
 vector cross(vector a, vector b) {
     vector c;
 
-    c.x = a.y * b.z - a.z - b.y;
+    c.x = a.y * b.z - a.z * b.y;
     c.y = a.x * b.z - a.z * b.x;
     c.z = a.x * b.y - a.y * b.x;
 

@@ -51,8 +51,8 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     lambert_battin(Re1, Rm2, dT1, muSun, 0, V12);
 
     //Velocity Vectors
-    vEarth.x = Ve * 1; vEarth.y = Ve * 0; vEarth.z = Ve * 0;
-    vMars.x = Vm * cos(thetaM); vMars.y = Vm * sin(thetaM); vMars.z = Vm * 0;
+    vEarth.x = Ve * 0; vEarth.y = Ve * 1; vEarth.z = Ve * 0;
+    vMars.x = Vm * -1*sin(thetaM); vMars.y = Vm * cos(thetaM); vMars.z = Vm * 0;
 
     //Vinf vectors
     vector VinfE1 = vinf(V12[0], vEarth);
@@ -74,7 +74,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     //Vinf Vector leaving
     vector VinfM3 = vinf(V34[0], vMars);
 
-    vMars.x = Vm * cos(thetaM); vMars.y = Vm * sin(thetaM); vMars.z = Vm * 0;
+    vMars.x = Vm * -1*sin(thetaM); vMars.y = Vm * cos(thetaM); vMars.z = Vm * 0;
 
     //Vinf vector arriving
     vector VinfM4 = vinf(V34[1], vMars);
@@ -92,7 +92,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
     vector V56[2];
     lambert_battin(Rm3, Re4, dT3, muSun, 0, V56);
 
-    vEarth.x = Ve * cos(thetaE); vEarth.y = Ve * sin(thetaE); vEarth.z = Ve * 0;
+    vEarth.x = Ve * -1*sin(thetaE); vEarth.y = Ve * cos(thetaE); vEarth.z = Ve * 0;
 
     //Vinf vectors
     vector VinfM5 = vinf(V56[0], vMars);
@@ -113,7 +113,7 @@ double cycle(double dT1, double dT2, double dT3, double phi) {
 
     vector VinfE7 = vinf(V78[0], vEarth);
 
-    vEarth.x = Ve * cos(thetaE); vEarth.y = Ve * sin(thetaE); vEarth.z = Ve * 0;
+    vEarth.x = Ve * -1*sin(thetaE); vEarth.y = Ve * cos(thetaE); vEarth.z = Ve * 0;
 
     vector VinfE8 = vinf(V78[1], vEarth);
 
@@ -171,8 +171,8 @@ double cycleMulti(double dT1, double dT2, double dT3, double phi) {
     lambert_battin(Re1, Rm2, dT1, muSun, 0, V12);
 
     //Velocity Vectors
-    vEarth.x = Ve * 1; vEarth.y = Ve * 0; vEarth.z = Ve * 0;
-    vMars.x = Vm * cos(thetaM); vMars.y = Vm * sin(thetaM); vMars.z = Vm * 0;
+    vEarth.x = Ve * 0; vEarth.y = Ve * 1; vEarth.z = Ve * 0;
+    vMars.x = Vm * -1*sin(thetaM); vMars.y = Vm * cos(thetaM); vMars.z = Vm * 0;
 
     //Vinf vectors
     vector VinfE1 = vinf(V12[0], vEarth);
@@ -194,7 +194,7 @@ double cycleMulti(double dT1, double dT2, double dT3, double phi) {
     //Vinf Vector leaving
     vector VinfM3 = vinf(V34[0], vMars);
 
-    vMars.x = Vm * cos(thetaM); vMars.y = Vm * sin(thetaM); vMars.z = Vm * 0;
+    vMars.x = Vm * -1*sin(thetaM); vMars.y = Vm * cos(thetaM); vMars.z = Vm * 0;
 
     //Vinf vector arriving
     vector VinfM4 = vinf(V34[1], vMars);
@@ -212,7 +212,7 @@ double cycleMulti(double dT1, double dT2, double dT3, double phi) {
     vector V56[2];
     lambert_battin(Rm3, Re4, dT3, muSun, 0, V56);
 
-    vEarth.x = Ve * cos(thetaE); vEarth.y = Ve * sin(thetaE); vEarth.z = Ve * 0;
+    vEarth.x = Ve * -1*sin(thetaE); vEarth.y = Ve * cos(thetaE); vEarth.z = Ve * 0;
 
     //Vinf vectors
     vector VinfM5 = vinf(V56[0], vMars);
@@ -234,7 +234,7 @@ double cycleMulti(double dT1, double dT2, double dT3, double phi) {
 
     vector VinfE7 = vinf(V78[0], vEarth);
 
-    vEarth.x = Ve * cos(thetaE); vEarth.y = Ve * sin(thetaE); vEarth.z = Ve * 0;
+    vEarth.x = Ve * -1*sin(thetaE); vEarth.y = Ve * cos(thetaE); vEarth.z = Ve * 0;
 
     vector VinfE8 = vinf(V78[1], vEarth);
 
