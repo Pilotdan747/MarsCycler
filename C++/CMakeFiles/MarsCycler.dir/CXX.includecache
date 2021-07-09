@@ -1,0 +1,78 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin.cpp
+Lambert_Battin.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin.h
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin.h
+helperFuncs.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h
+cmath
+-
+stdio.h
+-
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin_Multi.cpp
+Lambert_Battin_Multi.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin_Multi.h
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin_Multi.h
+Lambert_Battin.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin.h
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.cpp
+cycler.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.h
+chrono
+-
+stdio.h
+-
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.h
+helperFuncs.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h
+math.h
+-
+Lambert_Battin.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin.h
+Lambert_Battin_Multi.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/Lambert_Battin_Multi.h
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.cpp
+helperFuncs.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h
+cmath
+-
+iostream
+-
+stdio.h
+-
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h
+
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/main.cpp
+iostream
+-
+cmath
+-
+helperFuncs.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/helperFuncs.h
+cycler.h
+/Users/Daniel/Documents/CODE/Research/Aldrin Institute/MarsCycler/C++/cycler.h
+time.h
+-
+chrono
+-
+omp.h
+-
+stdio.h
+-
+stdlib.h
+-
+

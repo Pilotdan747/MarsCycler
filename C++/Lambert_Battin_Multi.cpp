@@ -40,31 +40,63 @@ void lambert_battin_multi(vector R1, vector R2, double dT, double mu, double dir
     v = acos(sqrt(r1*r2)*cos(theta/2)/n);
     l = pow(tan(v/2), 2);
 
-    xR = revSucSub(N, m, l, l);
-    xL = sucSub(N, m, l, l);
+    double yR, yL;
 
-    //printf("xR is: %f\n", xR);
-    //printf("xL is: %f\n", xL);
+    xR = revSucSub(N, m, l, l, yR);
+    xL = sucSub(N, m, l, l, yL);
+
+    printf("xR is: %f\n", xR);
+    printf("xL is: %f\n", xL);
 
     double EL = 2*atan(sqrt(xL));
     double ER = 2*atan(sqrt(xR));
 
+    printf("ER is: %f\n", ER);
+    printf("EL is: %f\n", EL);
+
 
     // Check these
-    double aL = (-1*sqrt(4*pow(n, 2) + pow(d, 2))* cos(EL) + 2*n)/(2*pow(sin(EL), 2));
-    double aR = (-1*sqrt(4*pow(n, 2) + pow(d, 2))* cos(ER) + 2*n)/(2*pow(sin(ER), 2));
+    //double aL = (-1*sqrt(4*pow(n, 2) + pow(d, 2))* cos(EL) + 2*n)/(2*pow(sin(EL), 2));
+    //double aR = (-1*sqrt(4*pow(n, 2) + pow(d, 2))* cos(ER) + 2*n)/(2*pow(sin(ER), 2));
 
+    double aL = mu*pow(dT, 2)/16.0/pow(r0p, 2)/xL/pow(yL, 2);
+    double aR = mu*pow(dT, 2)/16.0/pow(r0p, 2)/xR/pow(yR, 2);
+    double aR2 = m*s*pow((1+L), 2)/8/xR/pow(yR, 2);
+    //          mu*pow(dT, 2)/16.0/pow(r0p, 2)/x /pow(y , 2);
+
+    printf("aR is: %f\n", aR);
+    printf("aR2 is: %f\n", aR2);
+    printf("aL is: %f\n", aL);
+
+    printf("yR is: %f\n", yR);
+    printf("yL is: %f\n", yL);
 
     double b, amin, tmin, ae, dE, f, g, gdot;
 
-    b = 2 * asin(sqrt(0.5 * (s - c) / aL));
+    // Still need to figure out what to do with xL and xR
+    if (xL > 0) {
+        f = 1 - aL / r1 * (1 - cos(EL));
+        g = dT - sqrt(pow(aL, 3) / mu) * (EL - sin(EL));
+        gdot = 1 - aL / r2 * (1 - cos(EL));
+    } else {
+        printf("Hyperbolic orbit");
+    }
+
+    /*b = 2 * asin(sqrt(0.5 * (s - c) / aL));
     if (theta > pi) {
         b = -b;
     }
 
+    printf("b is: %f\n", b);
+    printf("arg is: %f\n", 0.5 * (s - c) / aR);
+
     amin = 0.5 * s;
     tmin = sqrt(pow(amin, 3) / mu) * (pi - b + sin(b));
     ae = 2 * asin(sqrt(0.5 * s / aL));
+
+    //printf("amin is: %f\n", amin);
+    //printf("tmin is: %f\n", tmin);
+    //printf("ae is: %f\n", ae);
 
     if (dT > tmin) {
         ae = 2 * pi - ae;
@@ -74,6 +106,10 @@ void lambert_battin_multi(vector R1, vector R2, double dT, double mu, double dir
     f = 1 - aL / r1 * (1 - cos(dE));
     g = dT - sqrt(pow(aL, 3) / mu) * (dE - sin(dE));
     gdot = 1 - aL / r2 * (1 - cos(dE));
+*/
+    printf("f is: %f\n", f);
+    printf("g is: %f\n", g);
+    printf("gdot is: %f\n", gdot);
 
     vector V1, V2;
 
@@ -86,8 +122,8 @@ void lambert_battin_multi(vector R1, vector R2, double dT, double mu, double dir
 
 
 // Solving for xL
-double sucSub(int N, double m, double l, double x0) {
-    double x, y, yold, E, rhs;
+double sucSub(int N, double m, double l, double x0, double y) {
+    double x, yold, E, rhs;
 
     x = x0;
     y = 0;
@@ -106,7 +142,7 @@ double sucSub(int N, double m, double l, double x0) {
         y = ySolve(rhs);
 
         if (y > sqrt(m/l)) {
-            x = revSucSub(N, m, l, x0)*2;
+            x = revSucSub(N, m, l, x0, 0)*2;
             continue;
         }
 
@@ -117,8 +153,8 @@ double sucSub(int N, double m, double l, double x0) {
 }
 
 // Solving for xR
-double revSucSub(int N, double m, double l, double x0) {
-    double x, y1, y1old, y2, q, E0, h, hpri, Enew, E;
+double revSucSub(int N, double m, double l, double x0, double y1) {
+    double x, y1old, y2, q, E0, h, hpri, Enew, E;
 
     x = x0;
     y1 = 0;
@@ -134,7 +170,7 @@ double revSucSub(int N, double m, double l, double x0) {
         y2 = y1;
 
         if (y1 < 1) {
-            x = sucSub(N, m, l, x0)/2;
+            x = sucSub(N, m, l, x0, 0)/2;
             continue;
         }
 

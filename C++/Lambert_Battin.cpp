@@ -83,6 +83,10 @@ void lambert_battin(vector R1, vector R2, double dT, double mu, double dir, vect
 
     a = mu*pow(dT, 2)/16.0/pow(r0p, 2)/x/pow(y, 2);
 
+    printf("a is: %f\n", a);
+    printf("x is: %f\n", x);
+    printf("y is: %f\n", y);
+
     double b, amin, tmin, ae, dE, f, g, gdot, ah, bh, dH;
 
     if (a > 0) {
